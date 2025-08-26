@@ -49,16 +49,15 @@ const AppShowcase = () => {
         <div className="showcaselayout">
           <div ref={rydeRef} className="first-project-wrapper">
             <div className="image-wrapper">
-              <img src="/images/project1.png" alt="Ryde App Interface" />
+              <img src="/images/Viewpesa.png" alt="App home screen" />
             </div>
             <div className="text-content">
               <h2>
-                On-Demand Rides Made Simple with a Powerful, User-Friendly App
-                called Ryde
+                ViewPesa
               </h2>
               <p className="text-white-50 md:text-xl">
-                An app built with React Native, Expo, & TailwindCSS for a fast,
-                user-friendly experience.
+                 Flutter mobile app that parses M-Pesa SMS messages with 99% accuracy, enabling real-time 
+                 financial activity tracking for users and reducing manual input errors by over 80%
               </p>
             </div>
           </div>
@@ -68,10 +67,15 @@ const AppShowcase = () => {
               <div className="image-wrapper bg-[#FFEFDB]">
                 <img
                   src="/images/project2.png"
-                  alt="Library Management Platform"
+                  alt="Viewpesa app image"
                 />
               </div>
-              <h2>The Library Management Platform</h2>
+              <h2>SwiftDine, A restaurant Management System</h2>
+              <p className="text-white-50 md:text-xl">
+               SwiftDine is a digitized restaurant menu and ordering system designed to eliminate
+               delays in food service. Inspired by real-life frustration with long wait times, SwiftDine 
+               empowers diners to browse menus, place orders, and make payments — directly from their mobile devices.  
+              </p>
             </div>
 
             <div className="project" ref={ycDirectoryRef}>
