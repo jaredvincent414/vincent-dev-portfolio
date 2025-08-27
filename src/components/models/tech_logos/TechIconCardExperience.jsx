@@ -1,4 +1,4 @@
-import { Environment, Float, OrbitControls, useGLTF } from "@react-three/drei";
+import { Float, OrbitControls, useGLTF } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { useEffect } from "react";
 import * as THREE from "three";
@@ -58,6 +58,8 @@ const TechIconCardExperience = ({ model }) => {
     );
   };
 
+  // removed temporary primitives added in the last step
+
   return (
     <Canvas>
       <ambientLight intensity={0.3} />
@@ -68,7 +70,7 @@ const TechIconCardExperience = ({ model }) => {
         penumbra={1}
         intensity={2}
       />
-      <Environment preset="city" />
+      {/* No environment background; keep scene minimal */}
 
       {/* 
         The Float component from @react-three/drei is used to 
@@ -89,11 +91,7 @@ const TechIconCardExperience = ({ model }) => {
       */}
       <Float speed={5.5} rotationIntensity={0.5} floatIntensity={0.9}>
         <group scale={model.scale} rotation={model.rotation}>
-          {model.name === "Java" ? (
-            <CoffeeCup />
-          ) : (
-            <primitive object={scene.scene} />
-          )}
+          <primitive object={scene.scene} />
         </group>
       </Float>
 

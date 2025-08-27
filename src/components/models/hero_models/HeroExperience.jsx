@@ -19,6 +19,7 @@ const HeroExperience = () => {
       <OrbitControls
         enablePan={false} // Prevents panning of the scene
         enableZoom={false} // Disables zoom completely
+        enableRotate={!isMobile} // Disable rotation on mobile to prevent movement while scrolling
         enableDamping={true} // Smooth damping for rotation
         dampingFactor={0.05} // Damping factor for smooth movement
         rotateSpeed={0.5} // Slower rotation speed

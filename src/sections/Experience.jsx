@@ -105,22 +105,16 @@ const Experience = () => {
               <div key={card.title} className="exp-card-wrapper">
                 <div className="xl:w-2/6">
                   {index === 1 && (
-                    <div>
+                    <div className="hidden xl:block">
                       <h1 className="font-semibold text-3xl">{card.title}</h1>
-                      <p className="my-5 text-white-50">
-                        🗓️&nbsp;{card.date}
-                      </p>
-                      <p className="text-[#839CB5] italic">
-                        Responsibilities
-                      </p>
+                      <p className="my-5 text-white-50">🗓️&nbsp;{card.date}</p>
+                      <p className="text-[#839CB5] italic">Responsibilities</p>
                       <ul className="list-disc ms-5 mt-5 flex flex-col gap-5 text-white-50">
-                        {card.responsibilities.map(
-                          (responsibility, index) => (
-                            <li key={index} className="text-lg">
-                              {responsibility}
-                            </li>
-                          )
-                        )}
+                        {card.responsibilities.map((responsibility, index) => (
+                          <li key={index} className="text-lg">
+                            {responsibility}
+                          </li>
+                        ))}
                       </ul>
                     </div>
                   )}
@@ -136,25 +130,32 @@ const Experience = () => {
                         <img src={card.logoPath} alt="logo" />
                       </div>
                       <div>
-                        {index !== 1 && (
+                        {index !== 1 ? (
                           <>
                             <h1 className="font-semibold text-3xl">{card.title}</h1>
-                            <p className="my-5 text-white-50">
-                              🗓️&nbsp;{card.date}
-                            </p>
-                            <p className="text-[#839CB5] italic">
-                              Responsibilities
-                            </p>
+                            <p className="my-5 text-white-50">🗓️&nbsp;{card.date}</p>
+                            <p className="text-[#839CB5] italic">Responsibilities</p>
                             <ul className="list-disc ms-5 mt-5 flex flex-col gap-5 text-white-50">
-                              {card.responsibilities.map(
-                                (responsibility, index) => (
-                                  <li key={index} className="text-lg">
-                                    {responsibility}
-                                  </li>
-                                )
-                              )}
+                              {card.responsibilities.map((responsibility, index) => (
+                                <li key={index} className="text-lg">
+                                  {responsibility}
+                                </li>
+                              ))}
                             </ul>
                           </>
+                        ) : (
+                          <div className="xl:hidden">
+                            <h1 className="font-semibold text-3xl">{card.title}</h1>
+                            <p className="my-5 text-white-50">🗓️&nbsp;{card.date}</p>
+                            <p className="text-[#839CB5] italic">Responsibilities</p>
+                            <ul className="list-disc ms-5 mt-5 flex flex-col gap-5 text-white-50">
+                              {card.responsibilities.map((responsibility, index) => (
+                                <li key={index} className="text-lg">
+                                  {responsibility}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
                         )}
                       </div>
                     </div>
