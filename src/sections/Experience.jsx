@@ -96,18 +96,34 @@ const Experience = () => {
     >
       <div className="w-full h-full md:px-20 px-5">
         <TitleHeader
-          title="Work Experience"
+          title="Experience"
+          sub="What I have done so far"
         />
         <div className="mt-32 relative">
           <div className="relative z-50 xl:space-y-32 space-y-10">
-            {expCards.map((card) => (
+            {expCards.map((card, index) => (
               <div key={card.title} className="exp-card-wrapper">
                 <div className="xl:w-2/6">
-                  <GlowCard card={card}>
+                  {index === 1 && (
                     <div>
-                      <img src={card.imgPath} alt="exp-img" />
+                      <h1 className="font-semibold text-3xl">{card.title}</h1>
+                      <p className="my-5 text-white-50">
+                        🗓️&nbsp;{card.date}
+                      </p>
+                      <p className="text-[#839CB5] italic">
+                        Responsibilities
+                      </p>
+                      <ul className="list-disc ms-5 mt-5 flex flex-col gap-5 text-white-50">
+                        {card.responsibilities.map(
+                          (responsibility, index) => (
+                            <li key={index} className="text-lg">
+                              {responsibility}
+                            </li>
+                          )
+                        )}
+                      </ul>
                     </div>
-                  </GlowCard>
+                  )}
                 </div>
                 <div className="xl:w-4/6">
                   <div className="flex items-start">
@@ -120,22 +136,26 @@ const Experience = () => {
                         <img src={card.logoPath} alt="logo" />
                       </div>
                       <div>
-                        <h1 className="font-semibold text-3xl">{card.title}</h1>
-                        <p className="my-5 text-white-50">
-                          🗓️&nbsp;{card.date}
-                        </p>
-                        <p className="text-[#839CB5] italic">
-                          Responsibilities
-                        </p>
-                        <ul className="list-disc ms-5 mt-5 flex flex-col gap-5 text-white-50">
-                          {card.responsibilities.map(
-                            (responsibility, index) => (
-                              <li key={index} className="text-lg">
-                                {responsibility}
-                              </li>
-                            )
-                          )}
-                        </ul>
+                        {index !== 1 && (
+                          <>
+                            <h1 className="font-semibold text-3xl">{card.title}</h1>
+                            <p className="my-5 text-white-50">
+                              🗓️&nbsp;{card.date}
+                            </p>
+                            <p className="text-[#839CB5] italic">
+                              Responsibilities
+                            </p>
+                            <ul className="list-disc ms-5 mt-5 flex flex-col gap-5 text-white-50">
+                              {card.responsibilities.map(
+                                (responsibility, index) => (
+                                  <li key={index} className="text-lg">
+                                    {responsibility}
+                                  </li>
+                                )
+                              )}
+                            </ul>
+                          </>
+                        )}
                       </div>
                     </div>
                   </div>

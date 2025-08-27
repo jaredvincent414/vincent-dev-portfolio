@@ -1,7 +1,7 @@
 const navLinks = [
   {
-    name: "Work",
-    link: "#work",
+    name: "About",
+    link: "#about",
   },
   {
     name: "Experience",
@@ -84,44 +84,22 @@ const abilities = [
   },
 ];
 
-const techStackImgs = [
-  {
-    name: "React Developer",
-    imgPath: "/images/logos/react.png",
-  },
-  {
-    name: "Python Developer",
-    imgPath: "/images/logos/python.svg",
-  },
-  {
-    name: "Backend Developer",
-    imgPath: "/images/logos/node.png",
-  },
-  {
-    name: "Interactive Developer",
-    imgPath: "/images/logos/three.png",
-  },
-  {
-    name: "Project Manager",
-    imgPath: "/images/logos/git.svg",
-  },
-];
 
 const techStackIcons = [
   {
-    name: "React Developer",
+    name: "JavaScript",
     modelPath: "/models/react_logo-transformed.glb",
     scale: 1,
     rotation: [0, 0, 0],
   },
   {
-    name: "Python Developer",
+    name: "Python",
     modelPath: "/models/python-transformed.glb",
     scale: 0.8,
     rotation: [0, 0, 0],
   },
   {
-    name: "Backend Developer",
+    name: "Java",
     modelPath: "/models/node-transformed.glb",
     scale: 5,
     rotation: [0, -Math.PI / 2, 0],
@@ -153,7 +131,7 @@ const expCards = [
   {
     logoPath: "/images/its.png",
     title: "IT Support",
-    date: "January 2020 - Present",
+    date: "January 2025 - Present",
     responsibilities: [
       "Resolved 50+ daily hardware, software, and network issues for 300+ users, applying knowledge of Unix/Linux system administration and TCP/IP networking to troubleshoot efficiently.",
       "Deployed and maintained Windows/MacOS systems, printers, and classroom tech devices, improving system uptime by over 20%."
@@ -164,9 +142,11 @@ const expCards = [
     title: "Backend Developer",
     date: "April 2025 - August 2025",
     responsibilities: [
-      "Built cross-platform mobile apps using React Native, integrating with Appwrite's backend services.",
-      "Improved app performance and user experience through code optimization and testing.",
-      "Coordinated with the product team to implement features based on feedback.",
+      "Designed and implemented RESTful APIs with Django and Django REST Framework (DRF) to power mobile and web clients.",
+      "Modeled relational data with PostgreSQL, wrote optimized queries, and added migrations for new features.",
+      "Implemented authentication and authorization (JWT/session), request validation, and robust error handling.",
+      "Wrote unit/integration tests with pytest to improve reliability and prevent regressions.",
+      "Containerized services with Docker and documented API endpoints using OpenAPI/Swagger.",
     ],
   },
 ];
@@ -260,6 +240,5 @@ export {
   testimonials,
   socialImgs,
   techStackIcons,
-  techStackImgs,
   navLinks,
 };

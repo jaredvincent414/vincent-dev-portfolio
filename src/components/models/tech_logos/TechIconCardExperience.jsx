@@ -18,6 +18,46 @@ const TechIconCardExperience = ({ model }) => {
     }
   }, [scene]);
 
+  const CoffeeCup = () => {
+    return (
+      <group>
+        {/* Cup body */}
+        <mesh position={[0, -0.2, 0]} castShadow receiveShadow>
+          <cylinderGeometry args={[0.35, 0.4, 0.5, 32]} />
+          <meshStandardMaterial color="#ffffff" metalness={0.1} roughness={0.3} />
+        </mesh>
+
+        {/* Cup rim (slightly larger thin ring on top) */}
+        <mesh position={[0, 0.05, 0]} castShadow receiveShadow>
+          <torusGeometry args={[0.36, 0.03, 16, 64]} />
+          <meshStandardMaterial color="#f2f2f2" metalness={0.1} roughness={0.4} />
+        </mesh>
+
+        {/* Handle */}
+        <mesh position={[0.42, -0.05, 0]} rotation={[0, Math.PI / 2, 0]} castShadow>
+          <torusGeometry args={[0.18, 0.05, 16, 64]} />
+          <meshStandardMaterial color="#ffffff" metalness={0.1} roughness={0.3} />
+        </mesh>
+
+        {/* Coffee surface */}
+        <mesh position={[0, 0.3, 0]} rotation={[Math.PI / 2, 0, 0]} receiveShadow>
+          <circleGeometry args={[0.3, 32]} />
+          <meshStandardMaterial color="#4b2e2b" roughness={0.8} />
+        </mesh>
+
+        {/* Steam lines */}
+        <mesh position={[-0.1, 0.55, 0]} rotation={[Math.PI / 2, 0, 0]}>
+          <torusGeometry args={[0.08, 0.01, 12, 32, Math.PI]} />
+          <meshStandardMaterial color="#ff4d4d" emissive="#330000" emissiveIntensity={0.2} />
+        </mesh>
+        <mesh position={[0.1, 0.65, 0]} rotation={[Math.PI / 2, 0, 0]}>
+          <torusGeometry args={[0.07, 0.01, 12, 32, Math.PI]} />
+          <meshStandardMaterial color="#ff4d4d" emissive="#330000" emissiveIntensity={0.2} />
+        </mesh>
+      </group>
+    );
+  };
+
   return (
     <Canvas>
       <ambientLight intensity={0.3} />
@@ -49,7 +89,11 @@ const TechIconCardExperience = ({ model }) => {
       */}
       <Float speed={5.5} rotationIntensity={0.5} floatIntensity={0.9}>
         <group scale={model.scale} rotation={model.rotation}>
-          <primitive object={scene.scene} />
+          {model.name === "Java" ? (
+            <CoffeeCup />
+          ) : (
+            <primitive object={scene.scene} />
+          )}
         </group>
       </Float>
 
