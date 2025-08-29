@@ -27,6 +27,10 @@ const HeroExperience = () => {
         maxPolarAngle={Math.PI / 2} // Maximum angle for vertical rotation
         autoRotate={false} // Disable auto-rotation
         autoRotateSpeed={0} // Ensure no auto-rotation
+        touches={{
+          ONE: isMobile ? "ROTATE" : "ROTATE",
+          TWO: "NONE" // Disable pinch-to-zoom on mobile
+        }}
       />
 
       <Suspense fallback={null}>

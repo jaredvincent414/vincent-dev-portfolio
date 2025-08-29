@@ -88,7 +88,7 @@ const TechStack = () => {
                 { name: "MongoDB", src: "https://cdn.simpleicons.org/mongodb" },
                 { name: "Docker", src: "https://cdn.simpleicons.org/docker" },
                 { name: "JUnit", src: "https://cdn.simpleicons.org/junit5" },
-                { name: "AWS", src: "https://cdn.simpleicons.org/amazonaws/FF9900" },
+                { name: "AWS", src: "https://www.logo.wine/logo/Amazon_Web_Services" },
                 { name: "Microsoft Azure", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" },
               ].map((logo, idx) => (
                 <img
