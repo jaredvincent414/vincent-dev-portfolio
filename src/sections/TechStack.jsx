@@ -2,86 +2,66 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
 import TitleHeader from "../components/TitleHeader";
-import TechIconCardExperience from "../components/models/tech_logos/TechIconCardExperience";
-import { techStackIcons } from "../constants";
-// import { techStackImgs } from "../constants";
 
 const TechStack = () => {
-  // Animate the tech cards in the skills section
-  useGSAP(() => {
-    // This animation is triggered when the user scrolls to the #skills wrapper
-    // The animation starts when the top of the wrapper is at the center of the screen
-    // The animation is staggered, meaning each card will animate in sequence
-    // The animation ease is set to "power2.inOut", which is a slow-in fast-out ease
-    gsap.fromTo(
-      ".tech-card",
-      {
-        // Initial values
-        y: 50, // Move the cards down by 50px
-        opacity: 0, // Set the opacity to 0
-      },
-      {
-        // Final values
-        y: 0, // Move the cards back to the top
-        opacity: 1, // Set the opacity to 1
-        duration: 1, // Duration of the animation
-        ease: "power2.inOut", // Ease of the animation
-        stagger: 0.2, // Stagger the animation by 0.2 seconds
-        scrollTrigger: {
-          trigger: "#skills", // Trigger the animation when the user scrolls to the #skills wrapper
-          start: "top center", // Start the animation when the top of the wrapper is at the center of the screen
-        },
-      }
-    );
-  });
-
   return (
     <div id="skills" className="flex-center section-padding">
       <div className="w-full h-full md:px-10 px-5">
-
-        <div className="tech-grid">
-          {/* Loop through the techStackIcons array and create a component for each item. 
-              The key is set to the name of the tech stack icon, and the classnames are set to 
-              card-border, tech-card, overflow-hidden, and group. The xl:rounded-full and rounded-lg 
-              classes are only applied on larger screens. */}
-          {techStackIcons.map((techStackIcon) => (
-            <div
-              key={techStackIcon.name}
-              className="tech-card overflow-hidden group xl:rounded-full rounded-lg"
-            >
-              <div className="tech-card-content">
-                {/* The tech-icon-wrapper div contains the TechIconCardExperience component, 
-                    which renders the 3D model of the tech stack icon. */}
-                <div className="tech-icon-wrapper">
-                  <TechIconCardExperience model={techStackIcon} />
-                </div>
-                {/* The padding-x and w-full classes are used to add horizontal padding to the 
-                    text and make it take up the full width of the component. */}
-                <div className="padding-x w-full">
-                  {/* The p tag contains the name of the tech stack icon. */}
-                  <p>{techStackIcon.name}</p>
-                </div>
-              </div>
+        {/* Programming Languages Section */}
+        <div className="mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-8">
+            Programming Languages
+          </h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 max-w-4xl mx-auto">
+            <div className="flex flex-col items-center">
+              <img 
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" 
+                alt="Python" 
+                className="w-16 h-16 md:w-20 md:h-20 mb-3 hover:scale-110 transition-transform duration-300"
+              />
+              <span className="text-white text-sm md:text-base font-medium">Python</span>
             </div>
-          ))}
-
-          {/* This is for the img part */}
-          {/* {techStackImgs.map((techStackIcon, index) => (
-            <div
-              key={index}
-              className="card-border tech-card overflow-hidden group xl:rounded-full rounded-lg"
-            >
-              <div className="tech-card-animated-bg" />
-              <div className="tech-card-content">
-                <div className="tech-icon-wrapper">
-                  <img src={techStackIcon.imgPath} alt="" />
-                </div>
-                <div className="padding-x w-full">
-                  <p>{techStackIcon.name}</p>
-                </div>
-              </div>
+            <div className="flex flex-col items-center">
+              <img 
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" 
+                alt="Java" 
+                className="w-16 h-16 md:w-20 md:h-20 mb-3 hover:scale-110 transition-transform duration-300"
+              />
+              <span className="text-white text-sm md:text-base font-medium">Java</span>
             </div>
-          ))} */}
+            <div className="flex flex-col items-center">
+              <img 
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" 
+                alt="JavaScript" 
+                className="w-16 h-16 md:w-20 md:h-20 mb-3 hover:scale-110 transition-transform duration-300"
+              />
+              <span className="text-white text-sm md:text-base font-medium">JavaScript</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <img 
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" 
+                alt="C++" 
+                className="w-16 h-16 md:w-20 md:h-20 mb-3 hover:scale-110 transition-transform duration-300"
+              />
+              <span className="text-white text-sm md:text-base font-medium">C++</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <img 
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg" 
+                alt="Swift" 
+                className="w-16 h-16 md:w-20 md:h-20 mb-3 hover:scale-110 transition-transform duration-300"
+              />
+              <span className="text-white text-sm md:text-base font-medium">Swift</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <img 
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" 
+                alt="Dart" 
+                className="w-16 h-16 md:w-20 md:h-20 mb-3 hover:scale-110 transition-transform duration-300"
+              />
+              <span className="text-white text-sm md:text-base font-medium">Dart</span>
+            </div>
+          </div>
         </div>
 
         {/* Scrolling logos marquee (left to right) */}

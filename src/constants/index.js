@@ -98,6 +98,7 @@ const techStackIcons = [
     scale: 0.8,
     rotation: [0, 0, 0],
   },
+
   {
     name: "Interactive Developer",
     modelPath: "/models/three.js-transformed.glb",
@@ -113,6 +114,18 @@ const techStackIcons = [
 ];
 
 const expCards = [
+  {
+    logoPath: "/images/codekenya.png",
+    title: "Software Engineering Intern",
+    date: "May - August 2025",
+    responsibilities: [
+      "Architected and deployed a fullstack portfolio website featuring an Agentic AI assistant capable of answering detailed questions about my professional experience.",
+      "Engineered a conversational AI agent using the Vercel AI SDK. Added tools to read google doc files ensuring factual context aware responses.",
+      "Developed a performant, server rendered frontend with Next.js, React, and JavaScript, styled with Tailwind CSS for a fully responsive user interface.",
+      "Integrated a PostgreSQL database via Supabase and Neon to manage project content and user interaction.",
+      "Managed the complete project lifecycle using professional Git workflows for version control and collaborative development.",
+    ],
+  },
   {
     logoPath: "/images/brandapp.png",
     title: "Software Engineer",
