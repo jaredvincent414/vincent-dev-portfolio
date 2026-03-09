@@ -4,180 +4,136 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import { expCards } from "../constants";
 import TitleHeader from "../components/TitleHeader";
-import GlowCard from "../components/GlowCard";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Experience = () => {
   useGSAP(() => {
-    // Loop through each timeline card and animate them in
-    // as the user scrolls to each card
-    gsap.utils.toArray(".timeline-card").forEach((card) => {
-      // Animate the card coming in from the left
-      // and fade in
-      gsap.from(card, {
-        // Move the card in from the left
-        xPercent: -100,
-        // Make the card invisible at the start
-        opacity: 0,
-        // Set the origin of the animation to the left side of the card
-        transformOrigin: "left left",
-        // Animate over 1 second
-        duration: 1,
-        // Use a power2 ease-in-out curve
-        ease: "power2.inOut",
-        // Trigger the animation when the card is 80% of the way down the screen
-        scrollTrigger: {
-          // The card is the trigger element
-          trigger: card,
-          // Trigger the animation when the card is 80% down the screen
-          start: "top 80%",
-        },
-      });
+    // Animate each card sliding in from its side
+    gsap.utils.toArray(".exp-card").forEach((card, i) => {
+      const fromLeft = i % 2 === 0;
+      gsap.fromTo(
+        card,
+        { x: fromLeft ? -60 : 60, opacity: 0 },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: { trigger: card, start: "top 82%" },
+        }
+      );
     });
 
-    // Animate the timeline height as the user scrolls
-    // from the top of the timeline to 70% down the screen
-    // The timeline height should scale down from 1 to 0
-    // as the user scrolls up the screen
-    gsap.to(".timeline", {
-      // Set the origin of the animation to the bottom of the timeline
-      transformOrigin: "bottom bottom",
-      // Animate the timeline height over 1 second
-      ease: "power1.inOut",
-      // Trigger the animation when the timeline is at the top of the screen
-      // and end it when the timeline is at 70% down the screen
-      scrollTrigger: {
-        trigger: ".timeline",
-        start: "top center",
-        end: "70% center",
-        // Update the animation as the user scrolls
-        onUpdate: (self) => {
-          // Scale the timeline height as the user scrolls
-          // from 1 to 0 as the user scrolls up the screen
-          gsap.to(".timeline", {
-            scaleY: 1 - self.progress,
-          });
-        },
-      },
-    });
-
-    // Loop through each expText element and animate them in
-    // as the user scrolls to each text element
-    gsap.utils.toArray(".expText").forEach((text) => {
-      // Animate the text opacity from 0 to 1
-      // and move it from the left to its final position
-      // over 1 second with a power2 ease-in-out curve
-      gsap.from(text, {
-        // Set the opacity of the text to 0
-        opacity: 0,
-        // Move the text from the left to its final position
-        // (xPercent: 0 means the text is at its final position)
-        xPercent: 0,
-        // Animate over 1 second
-        duration: 1,
-        // Use a power2 ease-in-out curve
-        ease: "power2.inOut",
-        // Trigger the animation when the text is 60% down the screen
+    // Draw the timeline line as you scroll
+    gsap.fromTo(
+      ".exp-timeline-line",
+      { scaleY: 0 },
+      {
+        scaleY: 1,
+        transformOrigin: "top center",
+        ease: "none",
         scrollTrigger: {
-          // The text is the trigger element
-          trigger: text,
-          // Trigger the animation when the text is 60% down the screen
+          trigger: ".exp-timeline-line",
           start: "top 60%",
+          end: "bottom 40%",
+          scrub: true,
         },
-      });
-    }, "<"); // position parameter - insert at the start of the animation
+      }
+    );
   }, []);
 
   return (
-    <section
-      id="experience"
-      className="flex-center md:mt-40 mt-20 section-padding xl:px-0"
-    >
-      <div className="w-full h-full md:px-20 px-5">
-        <TitleHeader
-          title="Experience"
-          sub="What I have done so far"
+    <section id="experience" className="py-20 md:py-32 px-5 md:px-20">
+      <TitleHeader title="Experience" sub="What I have done so far" />
+
+      <div className="relative mt-20 max-w-5xl mx-auto">
+
+        {/* Center vertical line */}
+        <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px bg-white/10" />
+        <div
+          className="exp-timeline-line absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px origin-top"
+          style={{ background: "linear-gradient(to bottom, #a855f7, #3b82f6, transparent)" }}
         />
-        <div className="mt-32 relative">
-          <div className="relative z-50 xl:space-y-32 space-y-10">
-            {expCards.map((card, index) => (
-              <div key={card.title} className="exp-card-wrapper">
-                <div className="xl:w-2/6">
-                  {(index === 1 || index === 3) && (
-                    <div className="hidden xl:block">
-                      <h1 className="font-semibold text-3xl">{card.title}</h1>
-                      <p className="my-5 text-white-50">
-                        🗓️&nbsp;{card.date}
-                      </p>
-                      <p className="text-[#839CB5] italic">
-                        Responsibilities
-                      </p>
-                      <ul className="list-disc ms-5 mt-5 flex flex-col gap-5 text-white-50">
-                        {card.responsibilities.map(
-                          (responsibility, index) => (
-                            <li key={index} className="text-lg">
-                              {responsibility}
-                            </li>
-                          )
-                        )}
+
+        <div className="flex flex-col gap-20">
+          {expCards.map((card, index) => {
+            const isLeft = index % 2 === 0; // even → card on left, odd → card on right
+
+            return (
+              <div key={card.title} className="relative flex items-start justify-center">
+
+                {/* Left slot */}
+                <div className="w-1/2 pr-10 flex justify-end">
+                  {isLeft && (
+                    <div
+                      className="exp-card w-full max-w-sm rounded-2xl p-6
+                                 bg-[#0d0d2b] border border-white/10
+                                 shadow-[0_0_30px_rgba(168,85,247,0.08)]"
+                    >
+                      <h3 className="text-white font-bold text-lg md:text-xl leading-snug mb-1">
+                        {card.title}
+                      </h3>
+                      <p className="text-[#839CB5] text-xs mb-4">{card.date}</p>
+                      <ul className="flex flex-col gap-3">
+                        {card.responsibilities.map((r) => (
+                          <li key={r} className="flex gap-2 text-white/70 text-sm leading-relaxed">
+                            <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-purple-400 flex-none" />
+                            {r}
+                          </li>
+                        ))}
                       </ul>
                     </div>
                   )}
                 </div>
-                <div className="xl:w-4/6">
-                  <div className="flex items-start">
-                    <div className="timeline-wrapper">
-                      <div className="timeline" />
-                      <div className="gradient-line w-1 h-full" />
-                    </div>
-                    <div className="expText flex xl:gap-20 md:gap-10 gap-5 relative z-20">
-                      <div className="timeline-logo">
-                        <img src={card.logoPath} alt="logo" />
-                      </div>
-                      <div>
-                        <div>
-                          {index !== 1 && index !== 3 ? (
-                            <>
-                              <h1 className="font-semibold text-3xl">{card.title}</h1>
-                              <p className="my-5 text-white-50">
-                                🗓️&nbsp;{card.date}
-                              </p>
-                              <p className="text-[#839CB5] italic">
-                                Responsibilities
-                              </p>
-                              <ul className="list-disc ms-5 mt-5 flex flex-col gap-5 text-white-50">
-                                {card.responsibilities.map(
-                                  (responsibility, index) => (
-                                    <li key={index} className="text-lg">
-                                      {responsibility}
-                                    </li>
-                                  )
-                                )}
-                              </ul>
-                            </>
-                          ) : (
-                            <div className="xl:hidden">
-                              <h1 className="font-semibold text-3xl">{card.title}</h1>
-                              <p className="my-5 text-white-50">🗓️&nbsp;{card.date}</p>
-                              <p className="text-[#839CB5] italic">Responsibilities</p>
-                              <ul className="list-disc ms-5 mt-5 flex flex-col gap-5 text-white-50">
-                                {card.responsibilities.map((responsibility, index) => (
-                                  <li key={index} className="text-lg">
-                                    {responsibility}
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    </div>
+
+                {/* Center node */}
+                <div className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center z-10">
+                  <div className="w-12 h-12 rounded-full border border-white/20 bg-[#0d0d2b]
+                                  flex items-center justify-center
+                                  shadow-[0_0_16px_rgba(168,85,247,0.3)]">
+                    <img
+                      src={card.logoPath}
+                      alt={card.title}
+                      className="w-7 h-7 object-contain rounded-full"
+                    />
                   </div>
+                  {/* Date label — right of node for left cards, left for right cards */}
+                  <span
+                    className={`absolute top-3 text-white/60 text-xs whitespace-nowrap
+                                ${isLeft ? "left-14" : "right-14 text-right"}`}
+                  >
+                    {card.date}
+                  </span>
                 </div>
+
+                {/* Right slot */}
+                <div className="w-1/2 pl-10 flex justify-start">
+                  {!isLeft && (
+                    <div
+                      className="exp-card w-full max-w-sm rounded-2xl p-6
+                                 bg-[#0d0d2b] border border-white/10
+                                 shadow-[0_0_30px_rgba(168,85,247,0.08)]"
+                    >
+                      <h3 className="text-white font-bold text-lg md:text-xl leading-snug mb-1">
+                        {card.title}
+                      </h3>
+                      <p className="text-[#839CB5] text-xs mb-4">{card.date}</p>
+                      <ul className="flex flex-col gap-3">
+                        {card.responsibilities.map((r) => (
+                          <li key={r} className="flex gap-2 text-white/70 text-sm leading-relaxed">
+                            <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-purple-400 flex-none" />
+                            {r}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+
               </div>
-            ))}
-          </div>
+            );
+          })}
         </div>
       </div>
     </section>

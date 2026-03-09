@@ -10,7 +10,7 @@ html,
 body {
   width: 100dvw;
   overflow-x: hidden;
-  background-color: black;
+  background-color: #080d1a;
   color: white;
   scroll-behavior: smooth;
   font-family: "Mona Sans", sans-serif;
@@ -323,6 +323,49 @@ section {
   }
 }
 
+/* Scroll mouse indicator */
+.scroll-mouse {
+  width: 24px;
+  height: 38px;
+  border: 2px solid rgba(168, 85, 247, 0.6);
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  padding-top: 5px;
+}
+
+.scroll-dot {
+  width: 4px;
+  height: 8px;
+  background: #a855f7;
+  border-radius: 2px;
+  animation: scroll-bounce 1.6s ease-in-out infinite;
+}
+
+@keyframes scroll-bounce {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  60%       { transform: translateY(10px); opacity: 0.2; }
+}
+
+/* Hero name gradient (kept for fallback) */
+.hero-name-gradient {
+  background-image: linear-gradient(90deg, #0f5132 0%, #4ea8de 35%, #ff6fa5 65%, #ff9f45 100%);
+}
+
+/* Typewriter cursor blink */
+.hero-cursor {
+  display: inline-block;
+  margin-left: 1px;
+  color: #a855f7;
+  font-weight: 300;
+  animation: cursor-blink 1s step-start infinite;
+}
+
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
 /* Hero text slider starts */
 .slide {
   display: inline-block;
@@ -334,6 +377,7 @@ section {
   display: flex;
   flex-direction: column;
   animation: wordSlider 21s infinite cubic-bezier(0.9, 0.01, 0.3, 0.99);
+  will-change: transform;
 }
 
 @keyframes wordSlider {
@@ -420,6 +464,22 @@ section {
   100% {
     left: -100%;
   }
+}
+
+/* Seamless TechStack marquee (duplicated list: scrolls -50% then resets invisibly) */
+.marquee-scroll-track {
+  animation: marquee-scroll 35s linear infinite;
+  width: max-content;
+  will-change: transform;
+}
+
+@keyframes marquee-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-scroll-track { animation: none; }
 }
 /* marquee end */
 

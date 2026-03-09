@@ -9,26 +9,19 @@ const AppShowcase = () => {
   const sectionRef = useRef(null);
   const rydeRef = useRef(null);
   const libraryRef = useRef(null);
-  const ycDirectoryRef = useRef(null);
 
   useGSAP(() => {
-    // Animation for the main section
     gsap.fromTo(
       sectionRef.current,
       { opacity: 0 },
       { opacity: 1, duration: 1.5 }
     );
 
-    // Animations for each app showcase
-    const cards = [rydeRef.current, libraryRef.current, ycDirectoryRef.current];
-
+    const cards = [rydeRef.current, libraryRef.current];
     cards.forEach((card, index) => {
       gsap.fromTo(
         card,
-        {
-          y: 50,
-          opacity: 0,
-        },
+        { y: 50, opacity: 0 },
         {
           y: 0,
           opacity: 1,
@@ -47,34 +40,37 @@ const AppShowcase = () => {
     <div id="work" ref={sectionRef} className="app-showcase">
       <div className="w-full">
         <div className="showcaselayout">
+          {/* ViewPesa — placeholder until screenshot is added */}
           <div ref={rydeRef} className="first-project-wrapper">
             <div className="image-wrapper">
-              <img src="/images/Viewpesa.png" alt="App home screen" />
+              <div className="w-full h-full rounded-xl flex items-center justify-center bg-gradient-to-br from-[#0f5132] via-[#1a3a5c] to-[#0d0d1a]">
+                <span className="text-white/40 text-lg font-semibold tracking-wide">ViewPesa</span>
+              </div>
             </div>
             <div className="text-content">
-              <h2>
-                ViewPesa
-              </h2>
+              <h2>ViewPesa</h2>
               <p className="text-white-50 md:text-xl">
-                 Flutter mobile app that parses M-Pesa SMS messages with 99% accuracy, enabling real-time 
-                 financial activity tracking for users and reducing manual input errors by over 80%
+                Flutter mobile app that parses M-Pesa SMS messages with 99% accuracy, enabling real-time
+                financial activity tracking for users and reducing manual input errors by over 80%.
               </p>
             </div>
           </div>
 
+          {/* SwiftDine */}
           <div className="project-list-wrapper overflow-hidden">
             <div className="project" ref={libraryRef}>
               <div className="image-wrapper bg-[#FFEFDB]">
                 <img
-                  src="/images/project2.png"
-                  alt="Viewpesa app image"
+                  src="/images/Swiftdine.png"
+                  alt="SwiftDine restaurant management system"
+                  loading="lazy"
                 />
               </div>
-              <h2>SwiftDine, A restaurant Management System</h2>
+              <h2>SwiftDine — Restaurant Management System</h2>
               <p className="text-white-50 md:text-xl">
-               SwiftDine is a digitized restaurant menu and ordering system designed to eliminate
-               delays in food service. Inspired by real-life frustration with long wait times, SwiftDine 
-               empowers diners to browse menus, place orders, and make payments — directly from their mobile devices.  
+                SwiftDine is a digitized restaurant menu and ordering system designed to eliminate
+                delays in food service. Empowers diners to browse menus, place orders, and make
+                payments directly from their mobile devices.
               </p>
             </div>
           </div>
