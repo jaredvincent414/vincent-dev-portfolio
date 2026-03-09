@@ -1,124 +1,136 @@
+import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import TitleHeader from "../components/TitleHeader";
 
-const TechStack = () => {
-  return (
-    <div id="skills" className="flex-center section-padding">
-      <div className="w-full h-full md:px-10 px-5">
-        {/* Programming Languages Section */}
-        <div className="mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-8">
-            Programming Languages
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 max-w-4xl mx-auto">
-            <div className="flex flex-col items-center">
-              <img 
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" 
-                alt="Python" 
-                className="w-16 h-16 md:w-20 md:h-20 mb-3 hover:scale-110 transition-transform duration-300"
-              />
-              <span className="text-white text-sm md:text-base font-medium">Python</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <img 
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" 
-                alt="Java" 
-                className="w-16 h-16 md:w-20 md:h-20 mb-3 hover:scale-110 transition-transform duration-300"
-              />
-              <span className="text-white text-sm md:text-base font-medium">Java</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <img 
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" 
-                alt="JavaScript" 
-                className="w-16 h-16 md:w-20 md:h-20 mb-3 hover:scale-110 transition-transform duration-300"
-              />
-              <span className="text-white text-sm md:text-base font-medium">JavaScript</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <img 
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" 
-                alt="C++" 
-                className="w-16 h-16 md:w-20 md:h-20 mb-3 hover:scale-110 transition-transform duration-300"
-              />
-              <span className="text-white text-sm md:text-base font-medium">C++</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <img 
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg" 
-                alt="Swift" 
-                className="w-16 h-16 md:w-20 md:h-20 mb-3 hover:scale-110 transition-transform duration-300"
-              />
-              <span className="text-white text-sm md:text-base font-medium">Swift</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <img 
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" 
-                alt="Dart" 
-                className="w-16 h-16 md:w-20 md:h-20 mb-3 hover:scale-110 transition-transform duration-300"
-              />
-              <span className="text-white text-sm md:text-base font-medium">Dart</span>
-            </div>
-          </div>
-        </div>
+gsap.registerPlugin(ScrollTrigger);
 
-        {/* Scrolling logos marquee (left to right) */}
-        <div className="mt-16">
-          <div className="overflow-hidden relative">
-            <div className="marquee-track flex items-center gap-10 will-change-transform">
-              {[
-                { name: "Git", src: "https://cdn.simpleicons.org/git" },
-                { name: "Postman", src: "https://cdn.simpleicons.org/postman" },
-                { name: "PostgreSQL", src: "https://cdn.simpleicons.org/postgresql" },
-                { name: "MySQL", src: "https://cdn.simpleicons.org/mysql" },
-                { name: "Figma", src: "https://cdn.simpleicons.org/figma" },
-                { name: "Node.js", src: "https://cdn.simpleicons.org/nodedotjs" },
-                { name: "Next.js", src: "https://cdn.simpleicons.org/nextdotjs" },
-                { name: "Express", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" },
-                { name: "Django", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" },
-                { name: "Three.js", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/threejs/threejs-original.svg" },
-                { name: "Email", src: "https://cdn.simpleicons.org/gmail/EA4335" },
-                { name: "Tailwind CSS", src: "https://cdn.simpleicons.org/tailwindcss" },
-                { name: "Flutter", src: "https://cdn.simpleicons.org/flutter" },
-                { name: "HTML", src: "https://cdn.simpleicons.org/html5" },
-                { name: "CSS", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
-                { name: "NumPy", src: "https://cdn.simpleicons.org/numpy" },
-                { name: "MongoDB", src: "https://cdn.simpleicons.org/mongodb" },
-                { name: "Docker", src: "https://cdn.simpleicons.org/docker" },
-                { name: "JUnit", src: "https://cdn.simpleicons.org/junit5" },
-                { name: "AWS", src: "https://www.logo.wine/logo/Amazon_Web_Services" },
-                { name: "Microsoft Azure", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" },
-              ].map((logo, idx) => (
-                <img
-                  key={`${logo.name}-${idx}`}
-                  src={logo.src}
-                  alt={`${logo.name} logo`}
-                  className="h-10 w-auto opacity-90 hover:opacity-100 transition-opacity"
-                  loading="lazy"
-                />
-              ))}
-            </div>
-          </div>
-        </div>
+const skillCategories = [
+  {
+    title: "Programming Languages",
+    skills: [
+      { name: "Rust",       pct: 88 },
+      { name: "TypeScript", pct: 87 },
+      { name: "Python",     pct: 100 },
+      { name: "Java",       pct: 100 },
+      { name: "Swift",      pct: 75 },
+      { name: "C / C++",   pct: 70 },
+    ],
+  },
+  {
+    title: "Systems & Infrastructure",
+    skills: [
+      { name: "Linux / Unix",              pct: 85 },
+      { name: "Multithreading & Concurrency", pct: 88 },
+      { name: "Microservices",             pct: 85 },
+      { name: "Docker & Terraform",        pct: 78 },
+      { name: "CI / CD",                   pct: 80 },
+    ],
+  },
+  {
+    title: "Backend & APIs",
+    skills: [
+      { name: "Node.js",      pct: 85 },
+      { name: "Spring Boot",  pct: 72 },
+      { name: "REST APIs",    pct: 90 },
+      { name: "Async / Await & Fault Tolerance", pct: 85 },
+      { name: ".NET",         pct: 65 },
+    ],
+  },
+  {
+    title: "Databases & Cloud",
+    skills: [
+      { name: "PostgreSQL / MySQL", pct: 83 },
+      { name: "MongoDB",            pct: 78 },
+      { name: "Supabase",           pct: 80 },
+      { name: "AWS (EC2, S3, RDS, Aurora)", pct: 75 },
+      { name: "Microsoft Azure",    pct: 65 },
+    ],
+  },
+  {
+    title: "AI / ML",
+    skills: [
+      { name: "LLM Pipelines & RAG", pct: 82 },
+      { name: "Distributed Preprocessing", pct: 80 },
+      { name: "Context Window Optimization", pct: 75 },
+    ],
+  },
+  {
+    title: "Mobile & Design",
+    skills: [
+      { name: "Swift / SwiftUI", pct: 78 },
+      { name: "Xcode",           pct: 75 },
+      { name: "Figma",           pct: 72 },
+    ],
+  },
+];
 
-        {/* Local styles for marquee animation */}
-        <style>{`
-          .marquee-track {
-            animation: marquee-left-right 25s linear infinite;
-            width: max-content;
-          }
-          @keyframes marquee-left-right {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-          }
-          @media (prefers-reduced-motion: reduce) {
-            .marquee-track { animation: none; }
-          }
-        `}</style>
-      </div>
+const SkillBar = ({ name, pct }) => (
+  <div className="mb-4">
+    <p className="text-white/70 text-sm mb-1">{name}</p>
+    <div className="w-full h-2 rounded-full bg-white/10 overflow-hidden">
+      <div
+        className="skill-bar h-full rounded-full origin-left scale-x-0"
+        style={{
+          width: `${pct}%`,
+          background: "linear-gradient(90deg, #a855f7, #3b82f6)",
+        }}
+      />
     </div>
+  </div>
+);
+
+const TechStack = () => {
+  const sectionRef = useRef(null);
+
+  useGSAP(() => {
+    sectionRef.current.querySelectorAll(".skill-bar").forEach((bar) => {
+      gsap.fromTo(
+        bar,
+        { scaleX: 0 },
+        {
+          scaleX: 1,
+          duration: 1,
+          ease: "power2.out",
+          scrollTrigger: { trigger: bar, start: "top 88%" },
+        }
+      );
+    });
+
+    gsap.fromTo(
+      ".skill-category",
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        stagger: 0.1,
+        duration: 0.6,
+        ease: "power2.out",
+        scrollTrigger: { trigger: sectionRef.current, start: "top 80%" },
+      }
+    );
+  }, []);
+
+  return (
+    <section id="skills" ref={sectionRef} className="py-20 md:py-32 px-5 md:px-20">
+      <TitleHeader title="Skills" sub="What I work with" />
+
+      <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        {skillCategories.map((cat) => (
+          <div
+            key={cat.title}
+            className="skill-category opacity-0 rounded-2xl bg-[#0f0e24] border border-white/[0.08] px-7 py-6"
+          >
+            <h3 className="text-white font-bold text-base mb-5 tracking-wide">{cat.title}</h3>
+            {cat.skills.map((s) => (
+              <SkillBar key={s.name} name={s.name} pct={s.pct} />
+            ))}
+          </div>
+        ))}
+      </div>
+    </section>
   );
 };
 

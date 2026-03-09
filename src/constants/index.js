@@ -1,16 +1,9 @@
 const navLinks = [
-  {
-    name: "About",
-    link: "#about",
-  },
-  {
-    name: "Experience",
-    link: "#experience",
-  },
-  {
-    name: "Skills",
-    link: "#skills",
-  },
+  { name: "About",      link: "#about" },
+  { name: "Work",       link: "#work" },
+  { name: "Experience", link: "#experience" },
+  { name: "Skills",     link: "#skills" },
+  { name: "Contact",    link: "#contact" },
 ];
 
 const words = [
@@ -115,47 +108,50 @@ const techStackIcons = [
 
 const expCards = [
   {
-    logoPath: "/images/codekenya.png",
-    title: "Software Engineering Intern",
-    date: "May - August 2025",
+    logoPath: "/images/tuterra.png",
+    title: "Software Engineer Intern",
+    company: "Tuterra",
+    date: "Jan 2026 – Present",
     responsibilities: [
-      "Architected and deployed a fullstack portfolio website featuring an Agentic AI assistant capable of answering detailed questions about my professional experience.",
-      "Engineered a conversational AI agent using the Vercel AI SDK. Added tools to read google doc files ensuring factual context aware responses.",
-      "Developed a performant, server rendered frontend with Next.js, React, and JavaScript, styled with Tailwind CSS for a fully responsive user interface.",
-      "Integrated a PostgreSQL database via Supabase and Neon to manage project content and user interaction.",
-      "Managed the complete project lifecycle using professional Git workflows for version control and collaborative development.",
+      "Engineered scalable ML and LLM data pipelines processing 10,000+ datasets, increasing throughput by 30%.",
+      "Increased multimedia processing throughput by 45% by implementing asynchronous Rust services using non-blocking I/O and multithreaded execution to handle 1,000+ concurrent audio and video moderation streams.",
+      "Reduced harmful content detection latency by 38% by designing event-driven moderation pipelines with parallel task execution and fault-isolated microservice boundaries on Linux-based infrastructure.",
+      "Improved system reliability to 99.9% uptime by decomposing monolithic workflows into stateless, horizontally scalable services with retry logic and observability-driven debugging.",
     ],
   },
   {
     logoPath: "/images/brandapp.png",
-    title: "Software Engineer",
-    date: "April 2025 - Present",
+    title: "Mobile Software Engineer",
+    company: "Branda",
+    date: "Apr 2025 – Present",
     responsibilities: [
-      "Elevated student experience for 6000+ users by spearheading the creation of user-friendly interfaces for the Branda app from scratch, utilizing Swift & Restful API to enhance campus shuttle tracking, dining hour updates, interactive calendars, mapping services, & news feed integration",
-      "Increased user engagement by 50% by driving team collaboration using Agile methodology with Git and Figma, steering the creation of an intuitive application."
+      "Built and maintained backend microservices using TypeScript and Node.js, serving 800+ users.",
+      "Scaled a production campus mobile platform to 10,000+ users by leading 6 engineers with structured Agile sprint cycles and deterministic CI/CD release workflows.",
+      "Reduced application load time and memory footprint by 18% by profiling SwiftUI rendering performance and eliminating redundant state recomputation across navigation layers.",
+      "Reduced API response latency by 41% by refactoring networking layers to use asynchronous request handling and structured concurrency.",
     ],
   },
   {
-    logoPath: "/images/its.png",
-    title: "IT Support",
-    date: "January 2025 - Present",
+    logoPath: "/images/brandeis.png",
+    title: "Undergraduate ML Research Assistant",
+    company: "Brandeis University",
+    date: "Nov 2025 – Present",
     responsibilities: [
-      "Resolved 50+ daily hardware, software, and network issues for 300+ users, applying knowledge of Unix/Linux system administration and TCP/IP networking to troubleshoot efficiently.",
-      "Deployed and maintained Windows/MacOS systems, printers, and classroom tech devices, improving system uptime by over 20%."
+      "Increased ML experiment throughput by 30% by engineering distributed preprocessing pipelines over 10,000+ datasets using parallelized batch execution across Linux-based compute environments.",
+      "Reduced prototype-to-production deployment time by 25% by converting research models into modular backend services with standardized API contracts and containerized deployment.",
+      "Improved long-context LLM consistency by 20% by implementing deterministic memory handling and structured context window management mechanisms.",
     ],
   },
-  {
-    logoPath: "/images/spaceyatech.png",
-    title: "Backend Developer",
-    date: "April 2025 - August 2025",
-    responsibilities: [
-      "Designed and implemented RESTful APIs with Django and Django REST Framework (DRF) to power mobile and web clients.",
-      "Modeled relational data with PostgreSQL, wrote optimized queries, and added migrations for new features.",
-      "Implemented authentication and authorization (JWT/session), request validation, and robust error handling.",
-      "Wrote unit/integration tests with pytest to improve reliability and prevent regressions.",
-      "Containerized services with Docker and documented API endpoints using OpenAPI/Swagger.",
-    ],
-  },
+];
+
+const organisations = [
+  { name: "ColorStack",               initials: "CS", color: "#6366f1", logoPath: "/images/orgs/colorstack.png" },
+  { name: "CodePath",                 initials: "CP", color: "#10b981", logoPath: "/images/orgs/codepath.png" },
+  { name: "Blacks In Technology",     initials: "BT", color: "#8b5cf6", logoPath: "/images/orgs/bit.png" },
+  { name: "NSBE",                     initials: "NS", color: "#f59e0b", logoPath: "/images/orgs/nsbe.png" },
+  { name: "KenSAP",                   initials: "KS", color: "#3b82f6", logoPath: "/images/orgs/kensap.png" },
+  { name: "Education For All Children", initials: "EA", color: "#ec4899", logoPath: "/images/orgs/efac.png" },
+  { name: "Tamid",                    initials: "TM", color: "#14b8a6", logoPath: "/images/orgs/tamid.png" },
 ];
 
 const expLogos = [
@@ -244,6 +240,7 @@ export {
   counterItems,
   expCards,
   expLogos,
+  organisations,
   testimonials,
   socialImgs,
   techStackIcons,
