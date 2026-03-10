@@ -3,6 +3,7 @@ import { lazy, Suspense } from "react";
 import Hero from "./sections/Hero";
 import Navbar from "./components/NavBar";
 import BackgroundWeb from "./components/BackgroundWeb";
+import GalaxyLayer from "./components/GalaxyLayer";
 
 const Experience = lazy(() => import("./sections/Experience"));
 const Organisations = lazy(() => import("./sections/Organisations"));
@@ -33,15 +34,38 @@ const App = () => (
     <Suspense fallback={<SectionLoader />}>
       <TechStack />
     </Suspense>
-    <Suspense fallback={<SectionLoader />}>
-      <Organisations />
-    </Suspense>
-    <Suspense fallback={<SectionLoader />}>
-      <Contact />
-    </Suspense>
-    <Suspense fallback={null}>
-      <Footer />
-    </Suspense>
+    {/* Galaxy zone — starfield + nebula from Organisations downward */}
+    <div className="relative">
+      <GalaxyLayer />
+
+      {/* Nebula colour blobs */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 1 }}>
+        <div className="absolute top-[10%] left-[15%] w-[500px] h-[500px] rounded-full opacity-[0.07]"
+             style={{ background: "radial-gradient(circle, #7c3aed, transparent 70%)", filter: "blur(80px)" }} />
+        <div className="absolute top-[40%] right-[10%] w-[400px] h-[400px] rounded-full opacity-[0.05]"
+             style={{ background: "radial-gradient(circle, #2563eb, transparent 70%)", filter: "blur(90px)" }} />
+        <div className="absolute bottom-[20%] left-[40%] w-[350px] h-[350px] rounded-full opacity-[0.06]"
+             style={{ background: "radial-gradient(circle, #db2777, transparent 70%)", filter: "blur(70px)" }} />
+        <div className="absolute top-[65%] left-[5%] w-[300px] h-[300px] rounded-full opacity-[0.04]"
+             style={{ background: "radial-gradient(circle, #0ea5e9, transparent 70%)", filter: "blur(80px)" }} />
+      </div>
+
+      {/* Fade-in from page above */}
+      <div className="absolute top-0 left-0 right-0 h-32 pointer-events-none"
+           style={{ background: "linear-gradient(to bottom, #0e1628, transparent)", zIndex: 2 }} />
+
+      <div className="relative" style={{ zIndex: 3 }}>
+        <Suspense fallback={<SectionLoader />}>
+          <Organisations />
+        </Suspense>
+        <Suspense fallback={<SectionLoader />}>
+          <Contact />
+        </Suspense>
+        <Suspense fallback={null}>
+          <Footer />
+        </Suspense>
+      </div>
+    </div>
   </>
 );
 
