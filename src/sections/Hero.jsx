@@ -74,10 +74,10 @@ const GemIcon = ({ color1, color2, uid }) => (
 );
 
 const roles = [
-  { uid: "intern",  title: "Software Engineering Intern", color1: "#4facfe", color2: "#00f2fe", border: "linear-gradient(135deg,#4facfe,#00c6fb)" },
-  { uid: "swe",     title: "Software Engineer",           color1: "#43e97b", color2: "#38f9d7", border: "linear-gradient(135deg,#43e97b,#38f9d7)" },
-  { uid: "backend", title: "Backend Developer",           color1: "#667eea", color2: "#764ba2", border: "linear-gradient(135deg,#667eea,#764ba2)" },
-  { uid: "it",      title: "IT Support Specialist",       color1: "#a855f7", color2: "#7c3aed", border: "linear-gradient(135deg,#a855f7,#c084fc)" },
+  { uid: "swe",  title: "Software Engineering", color1: "#4facfe", color2: "#00f2fe", border: "linear-gradient(135deg,#4facfe,#00c6fb)" },
+  { uid: "ml",   title: "Machine Learning / Data Science", color1: "#43e97b", color2: "#38f9d7", border: "linear-gradient(135deg,#43e97b,#38f9d7)" },
+  { uid: "devops", title: "DevOps",             color1: "#667eea", color2: "#764ba2", border: "linear-gradient(135deg,#667eea,#764ba2)" },
+  { uid: "it",   title: "IT Assistant",         color1: "#a855f7", color2: "#7c3aed", border: "linear-gradient(135deg,#a855f7,#c084fc)" },
 ];
 
 // ── Component ────────────────────────────────────────────────────────────────

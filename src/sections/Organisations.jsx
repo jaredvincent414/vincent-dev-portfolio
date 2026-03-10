@@ -32,12 +32,7 @@ const GemMesh = ({ logoPath, index }) => {
   );
 
   const faceMat = useMemo(
-    () =>
-      new THREE.MeshStandardMaterial({
-        map: texture,
-        metalness: 0.15,
-        roughness: 0.4,
-      }),
+    () => new THREE.MeshBasicMaterial({ map: texture }),
     [texture]
   );
 

@@ -1,9 +1,8 @@
 const navLinks = [
-  { name: "About",      link: "#about" },
-  { name: "Work",       link: "#work" },
-  { name: "Experience", link: "#experience" },
-  { name: "Skills",     link: "#skills" },
-  { name: "Contact",    link: "#contact" },
+  { name: "Experience",   link: "#experience" },
+  { name: "Skills",       link: "#skills" },
+  { name: "Organisations",link: "#organisations" },
+  { name: "Contact",      link: "#contact" },
 ];
 
 const words = [
@@ -108,7 +107,7 @@ const techStackIcons = [
 
 const expCards = [
   {
-    logoPath: "/images/tuterra.png",
+    logoPath: "/images/Tuterra.png",
     title: "Software Engineer Intern",
     company: "Tuterra",
     date: "Jan 2026 – Present",
@@ -132,7 +131,7 @@ const expCards = [
     ],
   },
   {
-    logoPath: "/images/brandeis.png",
+    logoPath: "/images/Brandeis.png",
     title: "Undergraduate ML Research Assistant",
     company: "Brandeis University",
     date: "Nov 2025 – Present",
