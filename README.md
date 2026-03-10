@@ -130,28 +130,6 @@ npm run dev
 npm run build
 npm run preview
 ```
-
----
-
-## Customisation
-
-All content is centralised in [`src/constants/index.js`](src/constants/index.js):
-
-- **`navLinks`** — navigation items and section anchors
-- **`expCards`** — experience entries (title, company, date, responsibilities, logo)
-- **`organisations`** — org names, colours, and logo paths
-- **`counterItems`** — hero stats (projects, languages, hackathons, contributions)
-
-Skill data lives directly in [`src/sections/TechStack.jsx`](src/sections/TechStack.jsx) in the `skillCategories` array.
-
----
-
-## Resume
-
-Place your resume PDF at `public/resume.pdf`. The Download Resume button in the Contact section links to `/resume.pdf`.
-
----
-
 ## Author
 
 **Vincent Jared**

@@ -25,7 +25,7 @@ const Contact = () => {
 
         {/* Let's connect */}
         <div className="w-full md:w-1/2">
-          <div className="rounded-2xl border border-white/[0.08] bg-[#0f0e24] px-10 py-10 relative overflow-hidden
+          <div className="rounded-2xl border border-white/[0.08] bg-[#0f0e24] px-6 py-8 md:px-10 md:py-10 relative overflow-hidden
                           hover:border-white/20 transition-all duration-300"
                style={{ boxShadow: "0 0 32px rgba(168,85,247,0.08)" }}>
             {/* Corner glow */}
@@ -75,11 +75,11 @@ const Contact = () => {
           <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full pointer-events-none opacity-[0.12]"
                style={{ background: "radial-gradient(circle, #a855f7, transparent 70%)", filter: "blur(30px)" }} />
 
-          <div className="px-10 py-10 text-center">
+          <div className="px-6 py-8 md:px-10 md:py-10 text-center">
             <p className="text-white/40 text-xs font-semibold tracking-widest uppercase mb-3">For Employers</p>
             <h2 className="text-4xl md:text-5xl font-black text-white">Resume.</h2>
           </div>
-          <div className="border-t border-white/[0.06] px-10 py-6 flex justify-center">
+          <div className="border-t border-white/[0.06] px-6 py-5 md:px-10 md:py-6 flex justify-center">
             <a
               href="/resume.pdf"
               download
