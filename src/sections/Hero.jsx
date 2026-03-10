@@ -74,10 +74,10 @@ const GemIcon = ({ color1, color2, uid }) => (
 );
 
 const roles = [
-  { uid: "intern",  title: "Software Engineering Intern", color1: "#4facfe", color2: "#00f2fe", border: "linear-gradient(135deg,#4facfe,#00c6fb)" },
-  { uid: "swe",     title: "Software Engineer",           color1: "#43e97b", color2: "#38f9d7", border: "linear-gradient(135deg,#43e97b,#38f9d7)" },
-  { uid: "backend", title: "Backend Developer",           color1: "#667eea", color2: "#764ba2", border: "linear-gradient(135deg,#667eea,#764ba2)" },
-  { uid: "it",      title: "IT Support Specialist",       color1: "#a855f7", color2: "#7c3aed", border: "linear-gradient(135deg,#a855f7,#c084fc)" },
+  { uid: "swe",  title: "Software Engineering", color1: "#4facfe", color2: "#00f2fe", border: "linear-gradient(135deg,#4facfe,#00c6fb)" },
+  { uid: "ml",   title: "Machine Learning / Data Science", color1: "#43e97b", color2: "#38f9d7", border: "linear-gradient(135deg,#43e97b,#38f9d7)" },
+  { uid: "devops", title: "DevOps",             color1: "#667eea", color2: "#764ba2", border: "linear-gradient(135deg,#667eea,#764ba2)" },
+  { uid: "it",   title: "IT Assistant",         color1: "#a855f7", color2: "#7c3aed", border: "linear-gradient(135deg,#a855f7,#c084fc)" },
 ];
 
 // ── Component ────────────────────────────────────────────────────────────────
@@ -176,7 +176,7 @@ const Hero = () => {
           </div>
 
           {/* Role cards */}
-          <div className="role-cards-grid grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
+          <div className="role-cards-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
             {roles.map((role) => (
               <div
                 key={role.uid}
@@ -184,9 +184,9 @@ const Hero = () => {
                            transition-transform duration-300 hover:-translate-y-2 hover:scale-[1.03]"
                 style={{ background: role.border }}
               >
-                <div className="bg-[#0d0d1a] rounded-2xl p-6 md:p-8 h-full flex flex-col
-                                items-center justify-center gap-5 text-center
-                                min-h-[190px] md:min-h-[210px]
+                <div className="bg-[#0d0d1a] rounded-2xl p-5 md:p-8 h-full flex flex-col
+                                items-center justify-center gap-4 text-center
+                                min-h-[160px] sm:min-h-[190px] md:min-h-[210px]
                                 transition-colors duration-300 group-hover:bg-[#12122a]">
                   <div className="transition-transform duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_12px_rgba(168,85,247,0.5)]">
                     <GemIcon color1={role.color1} color2={role.color2} uid={role.uid} />

@@ -9,23 +9,18 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Experience = () => {
   useGSAP(() => {
-    // Animate each card sliding in from its side
     gsap.utils.toArray(".exp-card").forEach((card, i) => {
       const fromLeft = i % 2 === 0;
       gsap.fromTo(
         card,
-        { x: fromLeft ? -60 : 60, opacity: 0 },
+        { x: fromLeft ? -50 : 50, opacity: 0 },
         {
-          x: 0,
-          opacity: 1,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: { trigger: card, start: "top 82%" },
+          x: 0, opacity: 1, duration: 0.8, ease: "power2.out",
+          scrollTrigger: { trigger: card, start: "top 84%" },
         }
       );
     });
 
-    // Draw the timeline line as you scroll
     gsap.fromTo(
       ".exp-timeline-line",
       { scaleY: 0 },
@@ -47,87 +42,78 @@ const Experience = () => {
     <section id="experience" className="py-20 md:py-32 px-5 md:px-20">
       <TitleHeader title="Experience" sub="What I have done so far" />
 
-      <div className="relative mt-20 max-w-5xl mx-auto">
-
-        {/* Center vertical line */}
-        <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px bg-white/10" />
+      {/* ── DESKTOP layout (md+) ── */}
+      <div className="hidden md:block relative mt-20 max-w-5xl mx-auto">
+        <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[3px] bg-white/[0.06] rounded-full" />
         <div
-          className="exp-timeline-line absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px origin-top"
-          style={{ background: "linear-gradient(to bottom, #a855f7, #3b82f6, transparent)" }}
+          className="exp-timeline-line absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[3px] rounded-full origin-top"
+          style={{ background: "linear-gradient(to bottom, #a855f7 0%, #3b82f6 60%, transparent 100%)" }}
         />
 
-        <div className="flex flex-col gap-20">
+        <div className="flex flex-col gap-16">
           {expCards.map((card, index) => {
-            const isLeft = index % 2 === 0; // even → card on left, odd → card on right
-
+            const isLeft = index % 2 === 0;
             return (
-              <div key={card.title} className="relative flex items-start justify-center">
+              <div key={card.title} className="relative flex items-center justify-center min-h-[140px]">
 
                 {/* Left slot */}
-                <div className="w-1/2 pr-10 flex justify-end">
-                  {isLeft && (
-                    <div
-                      className="exp-card w-full max-w-sm rounded-2xl p-6
-                                 bg-[#0d0d2b] border border-white/10
-                                 shadow-[0_0_30px_rgba(168,85,247,0.08)]"
-                    >
-                      <h3 className="text-white font-bold text-lg md:text-xl leading-snug mb-1">
-                        {card.title}
-                      </h3>
-                      <p className="text-[#839CB5] text-xs mb-4">{card.date}</p>
-                      <ul className="flex flex-col gap-3">
+                <div className="w-1/2 pr-12 flex justify-end">
+                  {isLeft ? (
+                    <div className="exp-card w-full max-w-md rounded-2xl p-6
+                                    bg-[#0d0d2b] border border-white/10
+                                    shadow-[0_0_30px_rgba(168,85,247,0.08)] relative">
+                      <div className="absolute right-[-8px] top-8 w-4 h-4 rotate-45
+                                      bg-[#0d0d2b] border-r border-t border-white/10" />
+                      <h3 className="text-white font-bold text-lg leading-snug">{card.title}</h3>
+                      <p className="text-white/40 text-sm mt-0.5 mb-4">{card.company}</p>
+                      <ul className="flex flex-col gap-2.5">
                         {card.responsibilities.map((r) => (
-                          <li key={r} className="flex gap-2 text-white/70 text-sm leading-relaxed">
-                            <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-purple-400 flex-none" />
+                          <li key={r} className="flex gap-2.5 text-white/60 text-sm leading-relaxed">
+                            <span className="mt-2 w-1 h-1 rounded-full bg-purple-400/70 flex-none" />
                             {r}
                           </li>
                         ))}
                       </ul>
                     </div>
+                  ) : (
+                    <p className="text-white/40 text-sm font-medium whitespace-nowrap self-center">
+                      {card.date}
+                    </p>
                   )}
                 </div>
 
                 {/* Center node */}
-                <div className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center z-10">
-                  <div className="w-12 h-12 rounded-full border border-white/20 bg-[#0d0d2b]
+                <div className="absolute left-1/2 -translate-x-1/2 z-10">
+                  <div className="w-14 h-14 rounded-full border-2 border-white/25 bg-[#0b0f1e]
                                   flex items-center justify-center
-                                  shadow-[0_0_16px_rgba(168,85,247,0.3)]">
-                    <img
-                      src={card.logoPath}
-                      alt={card.title}
-                      className="w-7 h-7 object-contain rounded-full"
-                    />
+                                  shadow-[0_0_0_4px_rgba(168,85,247,0.12),0_0_20px_rgba(168,85,247,0.2)]">
+                    <img src={card.logoPath} alt={card.company} className="w-8 h-8 object-contain rounded-full" />
                   </div>
-                  {/* Date label — right of node for left cards, left for right cards */}
-                  <span
-                    className={`absolute top-3 text-white/60 text-xs whitespace-nowrap
-                                ${isLeft ? "left-14" : "right-14 text-right"}`}
-                  >
-                    {card.date}
-                  </span>
                 </div>
 
                 {/* Right slot */}
-                <div className="w-1/2 pl-10 flex justify-start">
-                  {!isLeft && (
-                    <div
-                      className="exp-card w-full max-w-sm rounded-2xl p-6
-                                 bg-[#0d0d2b] border border-white/10
-                                 shadow-[0_0_30px_rgba(168,85,247,0.08)]"
-                    >
-                      <h3 className="text-white font-bold text-lg md:text-xl leading-snug mb-1">
-                        {card.title}
-                      </h3>
-                      <p className="text-[#839CB5] text-xs mb-4">{card.date}</p>
-                      <ul className="flex flex-col gap-3">
+                <div className="w-1/2 pl-12 flex justify-start">
+                  {!isLeft ? (
+                    <div className="exp-card w-full max-w-md rounded-2xl p-6
+                                    bg-[#0d0d2b] border border-white/10
+                                    shadow-[0_0_30px_rgba(168,85,247,0.08)] relative">
+                      <div className="absolute left-[-8px] top-8 w-4 h-4 rotate-45
+                                      bg-[#0d0d2b] border-l border-b border-white/10" />
+                      <h3 className="text-white font-bold text-lg leading-snug">{card.title}</h3>
+                      <p className="text-white/40 text-sm mt-0.5 mb-4">{card.company}</p>
+                      <ul className="flex flex-col gap-2.5">
                         {card.responsibilities.map((r) => (
-                          <li key={r} className="flex gap-2 text-white/70 text-sm leading-relaxed">
-                            <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-purple-400 flex-none" />
+                          <li key={r} className="flex gap-2.5 text-white/60 text-sm leading-relaxed">
+                            <span className="mt-2 w-1 h-1 rounded-full bg-purple-400/70 flex-none" />
                             {r}
                           </li>
                         ))}
                       </ul>
                     </div>
+                  ) : (
+                    <p className="text-white/40 text-sm font-medium whitespace-nowrap self-center">
+                      {card.date}
+                    </p>
                   )}
                 </div>
 
@@ -136,6 +122,52 @@ const Experience = () => {
           })}
         </div>
       </div>
+
+      {/* ── MOBILE layout (< md) ── */}
+      <div className="md:hidden relative mt-16 pl-10">
+        {/* Left timeline track */}
+        <div className="absolute left-4 top-0 bottom-0 w-[2px] bg-white/[0.06] rounded-full" />
+        <div
+          className="exp-timeline-line absolute left-4 top-0 bottom-0 w-[2px] rounded-full origin-top"
+          style={{ background: "linear-gradient(to bottom, #a855f7 0%, #3b82f6 60%, transparent 100%)" }}
+        />
+
+        <div className="flex flex-col gap-10">
+          {expCards.map((card) => (
+            <div key={card.title} className="relative">
+              {/* Node on the left line */}
+              <div className="absolute -left-[34px] top-4 z-10">
+                <div className="w-10 h-10 rounded-full border-2 border-white/25 bg-[#0b0f1e]
+                                flex items-center justify-center
+                                shadow-[0_0_0_3px_rgba(168,85,247,0.12),0_0_14px_rgba(168,85,247,0.2)]">
+                  <img src={card.logoPath} alt={card.company} className="w-6 h-6 object-contain rounded-full" />
+                </div>
+              </div>
+
+              {/* Card — full width */}
+              <div className="exp-card rounded-2xl p-5 bg-[#0d0d2b] border border-white/10
+                              shadow-[0_0_24px_rgba(168,85,247,0.07)]">
+                <div className="flex items-start justify-between gap-3 mb-3">
+                  <div>
+                    <h3 className="text-white font-bold text-base leading-snug">{card.title}</h3>
+                    <p className="text-white/40 text-sm mt-0.5">{card.company}</p>
+                  </div>
+                  <p className="text-white/35 text-xs font-medium whitespace-nowrap pt-0.5 text-right">{card.date}</p>
+                </div>
+                <ul className="flex flex-col gap-2">
+                  {card.responsibilities.map((r) => (
+                    <li key={r} className="flex gap-2 text-white/55 text-sm leading-relaxed">
+                      <span className="mt-2 w-1 h-1 rounded-full bg-purple-400/70 flex-none" />
+                      {r}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
     </section>
   );
 };
