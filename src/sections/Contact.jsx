@@ -81,7 +81,7 @@ const Contact = () => {
           </div>
           <div className="border-t border-white/[0.06] px-6 py-5 md:px-10 md:py-6 flex justify-center">
             <a
-              href="/resume.pdf"
+              href="/resume/Vincent_Otieno_Jared_Resume.pdf"
               download
               className="px-10 py-3 rounded-xl border border-purple-500/40 bg-purple-500/10
                          hover:bg-purple-500/20 hover:border-purple-500/70

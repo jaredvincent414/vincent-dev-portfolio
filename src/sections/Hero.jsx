@@ -166,12 +166,15 @@ const Hero = () => {
               Overview.
             </h2>
             <p className="text-gray-300 max-w-2xl leading-relaxed text-base md:text-lg">
-              Hi, I am Vincent. I am currently a sophomore at Brandeis University
-              studying Computer Science. I aspire to a technically challenging and
-              cutting-edge career that allows me to contribute to the progress of
-              technology and use it to help people, especially the marginalized.
-              My interests include software design &amp; development, machine learning,
-              natural language processing, and artificial intelligence.
+              Hi, I am Vincent — a Computer Science and Economics student at Brandeis University
+              who is genuinely obsessed with building things that matter. I work across the full
+              stack: React frontends, Node.js APIs, ML pipelines in Python, and performance-critical
+              services in Rust and Swift. I care about writing software that is fast, reliable,
+              and actually useful to real people.
+              <br /><br />
+              When I am not staring at a terminal, I am either on the pitch playing soccer or
+              watching Pedri orchestrate FC Barcelona&apos;s midfield and wondering how one
+              person can make it all look that effortless.
             </p>
           </div>
 

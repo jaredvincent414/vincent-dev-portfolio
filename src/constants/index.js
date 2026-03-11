@@ -1,109 +1,9 @@
 const navLinks = [
-  { name: "Experience",   link: "#experience" },
-  { name: "Projects",     link: "#projects" },
-  { name: "Skills",       link: "#skills" },
-  { name: "Organisations",link: "#organisations" },
-  { name: "Contact",      link: "#contact" },
-];
-
-const words = [
-  { text: "Ideas", imgPath: "/images/ideas.svg" },
-  { text: "Concepts", imgPath: "/images/concepts.svg" },
-  { text: "Designs", imgPath: "/images/designs.svg" },
-  { text: "Code", imgPath: "/images/code.svg" },
-  { text: "Ideas", imgPath: "/images/ideas.svg" },
-  { text: "Concepts", imgPath: "/images/concepts.svg" },
-  { text: "Designs", imgPath: "/images/designs.svg" },
-  { text: "Code", imgPath: "/images/code.svg" },
-];
-const counterItems = [
-  { value: 15, suffix: "+", label: "Projects Built" },
-  { value: 8, suffix: "+", label: "Programming Languages & Tools" },
-  { value: 5, suffix: "+", label: "Hackathons & Internships" },
-  { value: 3, suffix: "+", label: "Open Source Contributions" },
-];
-
-const logoIconsList = [
-  {
-    imgPath: "/images/logos/company-logo-1.png",
-  },
-  {
-    imgPath: "/images/logos/company-logo-2.png",
-  },
-  {
-    imgPath: "/images/logos/company-logo-3.png",
-  },
-  {
-    imgPath: "/images/logos/company-logo-4.png",
-  },
-  {
-    imgPath: "/images/logos/company-logo-5.png",
-  },
-  {
-    imgPath: "/images/logos/company-logo-6.png",
-  },
-  {
-    imgPath: "/images/logos/company-logo-7.png",
-  },
-  {
-    imgPath: "/images/logos/company-logo-8.png",
-  },
-  {
-    imgPath: "/images/logos/company-logo-9.png",
-  },
-  {
-    imgPath: "/images/logos/company-logo-10.png",
-  },
-  {
-    imgPath: "/images/logos/company-logo-11.png",
-  },
-];
-
-const abilities = [
-  {
-    imgPath: "/images/seo.png",
-    title: "Quality Focus",
-    desc: "Delivering high-quality results while maintaining attention to every detail.",
-  },
-  {
-    imgPath: "/images/chat.png",
-    title: "Reliable Communication",
-    desc: "Keeping you updated at every step to ensure transparency and clarity.",
-  },
-  {
-    imgPath: "/images/time.png",
-    title: "On-Time Delivery",
-    desc: "Making sure projects are completed on schedule, with quality & attention to detail.",
-  },
-];
-
-
-const techStackIcons = [
-  {
-    name: "JavaScript",
-    modelPath: "/models/react_logo-transformed.glb",
-    scale: 1,
-    rotation: [0, 0, 0],
-  },
-  {
-    name: "Python",
-    modelPath: "/models/python-transformed.glb",
-    scale: 0.8,
-    rotation: [0, 0, 0],
-  },
-
-  {
-    name: "Interactive Developer",
-    modelPath: "/models/three.js-transformed.glb",
-    scale: 0.05,
-    rotation: [0, 0, 0],
-  },
-  {
-    name: "Project Manager",
-    modelPath: "/models/git-svg-transformed.glb",
-    scale: 0.05,
-    rotation: [0, -Math.PI / 4, 0],
-  },
+  { name: "Experience",    link: "#experience" },
+  { name: "Projects",      link: "#projects" },
+  { name: "Skills",        link: "#skills" },
+  { name: "Organisations", link: "#organisations" },
+  { name: "Contact",       link: "#contact" },
 ];
 
 const expCards = [
@@ -142,16 +42,26 @@ const expCards = [
       "Improved long-context LLM consistency by 20% by implementing deterministic memory handling and structured context window management mechanisms.",
     ],
   },
+  {
+    logoPath: "/images/Brandeis.png",
+    title: "Student Technology Assistant",
+    company: "Brandeis University",
+    date: "Jan 2024 – Present",
+    responsibilities: [
+      "Resolved 50+ support cases per day across hardware, software, networking, and authentication for 300+ users using systematic debugging and root-cause analysis.",
+      "Diagnosed Windows, macOS, and Linux issues including VPN, DNS, TCP/IP, printing, and A/V systems, improving reliability and reducing repeat incidents.",
+    ],
+  },
 ];
 
 const organisations = [
-  { name: "ColorStack",               initials: "CS", color: "#6366f1", logoPath: "/images/orgs/colorstack.png" },
-  { name: "CodePath",                 initials: "CP", color: "#10b981", logoPath: "/images/orgs/codepath.png" },
-  { name: "Blacks In Technology",     initials: "BT", color: "#8b5cf6", logoPath: "/images/orgs/bit.png" },
-  { name: "NSBE",                     initials: "NS", color: "#f59e0b", logoPath: "/images/orgs/nsbe.png" },
-  { name: "KenSAP",                   initials: "KS", color: "#3b82f6", logoPath: "/images/orgs/kensap.png" },
-  { name: "Education For All Children", initials: "EA", color: "#ec4899", logoPath: "/images/orgs/efac.png" },
-  { name: "Tamid",                    initials: "TM", color: "#14b8a6", logoPath: "/images/orgs/tamid.png" },
+  { name: "ColorStack",                initials: "CS", color: "#6366f1", logoPath: "/images/orgs/colorstack.png" },
+  { name: "CodePath",                  initials: "CP", color: "#10b981", logoPath: "/images/orgs/codepath.png" },
+  { name: "Blacks In Technology",      initials: "BT", color: "#8b5cf6", logoPath: "/images/orgs/bit.png" },
+  { name: "NSBE",                      initials: "NS", color: "#f59e0b", logoPath: "/images/orgs/nsbe.png" },
+  { name: "KenSAP",                    initials: "KS", color: "#3b82f6", logoPath: "/images/orgs/kensap.png" },
+  { name: "Education For All Children",initials: "EA", color: "#ec4899", logoPath: "/images/orgs/efac.png" },
+  { name: "Tamid",                     initials: "TM", color: "#14b8a6", logoPath: "/images/orgs/tamid.png" },
 ];
 
 const projects = [
@@ -190,27 +100,7 @@ const projects = [
       "A campus mobile platform scaled to 10,000+ users. Built with TypeScript, Node.js microservices, and SwiftUI. Led 6 engineers using Agile sprints and CI/CD release workflows.",
     image: "/images/brandapp.png",
     tags: ["TypeScript", "Node.js", "SwiftUI"],
-    liveUrl: null,
-    repoUrl: "https://github.com/jaredvincent414",
-  },
-  {
-    title: "ML Data Pipeline",
-    description:
-      "Distributed preprocessing pipeline processing 10,000+ datasets using parallelised batch execution across Linux compute environments. Reduced prototype-to-production time by 25%.",
-    image: null,
-    gradient: "linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4c1d95 100%)",
-    tags: ["Python", "ML", "Linux"],
-    liveUrl: null,
-    repoUrl: "https://github.com/jaredvincent414",
-  },
-  {
-    title: "Content Moderation Service",
-    description:
-      "Event-driven audio and video moderation pipelines handling 1,000+ concurrent streams. Implemented in Rust with non-blocking I/O, reducing harmful content detection latency by 38%.",
-    image: null,
-    gradient: "linear-gradient(135deg, #0c1a2e 0%, #0f3460 50%, #16213e 100%)",
-    tags: ["Rust", "Microservices", "DevOps"],
-    liveUrl: null,
+    liveUrl: "https://apps.apple.com/us/app/branda/id1437022581",
     repoUrl: "https://github.com/jaredvincent414",
   },
   {
@@ -225,96 +115,4 @@ const projects = [
   },
 ];
 
-const expLogos = [
-  {
-    name: "brandapp",
-    imgPath: "/images/brandapp.png",
-  },
-  {
-    name: "codekenya",
-    imgPath: "/images/codekenya.png",
-  },
-  {
-    name: "its",
-    imgPath: "/images/its.png",
-  },
-];
-
-const testimonials = [
-  {
-    name: "Esther Howard",
-    mentions: "@estherhoward",
-    review:
-      "I can’t say enough good things about Adrian. He was able to take our complex project requirements and turn them into a seamless, functional website. His problem-solving abilities are outstanding.",
-    imgPath: "/images/client1.png",
-  },
-  {
-    name: "Wade Warren",
-    mentions: "@wadewarren",
-    review:
-      "Working with Adrian was a fantastic experience. He transformed our outdated website into a modern, user-friendly platform. His attention to detail and commitment to quality are unmatched. Highly recommend him for any web dev projects.",
-    imgPath: "/images/client3.png",
-  },
-  {
-    name: "Guy Hawkins",
-    mentions: "@guyhawkins",
-    review:
-      "Collaborating with Adrian was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Adrian's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Adrian is the ideal partner.",
-    imgPath: "/images/client2.png",
-  },
-  {
-    name: "Marvin McKinney",
-    mentions: "@marvinmckinney",
-    review:
-      "Adrian was a pleasure to work with. He turned our outdated website into a fresh, intuitive platform that’s both modern and easy to navigate. Fantastic work overall.",
-    imgPath: "/images/client5.png",
-  },
-  {
-    name: "Floyd Miles",
-    mentions: "@floydmiles",
-    review:
-      "Adrian’s expertise in web development is truly impressive. He delivered a robust and scalable solution for our e-commerce site, and our online sales have significantly increased since the launch. He’s a true professional!",
-    imgPath: "/images/client4.png",
-  },
-  {
-    name: "Albert Flores",
-    mentions: "@albertflores",
-    review:
-      "Adrian was a pleasure to work with. He understood our requirements perfectly and delivered a website that exceeded our expectations. His skills in both frontend and backend dev are top-notch.",
-    imgPath: "/images/client6.png",
-  },
-];
-
-const socialImgs = [
-  {
-    name: "insta",
-    imgPath: "/images/insta.png",
-  },
-  {
-    name: "fb",
-    imgPath: "/images/fb.png",
-  },
-  {
-    name: "x",
-    imgPath: "/images/x.png",
-  },
-  {
-    name: "linkedin",
-    imgPath: "/images/linkedin.png",
-  },
-];
-
-export {
-  words,
-  abilities,
-  logoIconsList,
-  counterItems,
-  expCards,
-  expLogos,
-  projects,
-  organisations,
-  testimonials,
-  socialImgs,
-  techStackIcons,
-  navLinks,
-};
+export { navLinks, expCards, organisations, projects };

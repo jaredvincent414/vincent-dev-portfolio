@@ -1,9 +1,4 @@
-const navLinks = [
-  { label: "Experience", href: "#experience" },
-  { label: "Skills",     href: "#skills" },
-  { label: "Organisations", href: "#organisations" },
-  { label: "Contact",    href: "#contact" },
-];
+import { navLinks } from "../constants";
 
 const Footer = () => (
   <footer className="relative z-10 border-t border-white/8 bg-[#09091a]">
@@ -21,13 +16,13 @@ const Footer = () => (
       {/* Navigation */}
       <div className="flex flex-col gap-3">
         <p className="text-white/60 text-xs font-semibold tracking-widest uppercase mb-1">Navigation</p>
-        {navLinks.map(({ label, href }) => (
+        {navLinks.map(({ name, link }) => (
           <a
-            key={label}
-            href={href}
+            key={name}
+            href={link}
             className="text-white/50 hover:text-white text-sm transition-colors duration-200"
           >
-            {label}
+            {name}
           </a>
         ))}
       </div>

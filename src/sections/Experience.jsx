@@ -64,19 +64,19 @@ const Experience = () => {
                                     shadow-[0_0_30px_rgba(168,85,247,0.08)] relative">
                       <div className="absolute right-[-8px] top-8 w-4 h-4 rotate-45
                                       bg-[#0d0d2b] border-r border-t border-white/10" />
-                      <h3 className="text-white font-bold text-lg leading-snug">{card.title}</h3>
-                      <p className="text-white/40 text-sm mt-0.5 mb-4">{card.company}</p>
-                      <ul className="flex flex-col gap-2.5">
+                      <h3 className="text-white font-bold text-2xl leading-snug">{card.title}</h3>
+                      <p className="text-white/75 text-base mt-0.5 mb-4">{card.company}</p>
+                      <ul className="flex flex-col gap-3">
                         {card.responsibilities.map((r) => (
-                          <li key={r} className="flex gap-2.5 text-white/60 text-sm leading-relaxed">
-                            <span className="mt-2 w-1 h-1 rounded-full bg-purple-400/70 flex-none" />
+                          <li key={r} className="flex gap-2.5 text-white/90 text-base leading-relaxed">
+                            <span className="mt-2 w-1.5 h-1.5 rounded-full bg-purple-400 flex-none" />
                             {r}
                           </li>
                         ))}
                       </ul>
                     </div>
                   ) : (
-                    <p className="text-white/40 text-sm font-medium whitespace-nowrap self-center">
+                    <p className="text-white/60 text-sm font-medium whitespace-nowrap self-center">
                       {card.date}
                     </p>
                   )}
@@ -99,12 +99,12 @@ const Experience = () => {
                                     shadow-[0_0_30px_rgba(168,85,247,0.08)] relative">
                       <div className="absolute left-[-8px] top-8 w-4 h-4 rotate-45
                                       bg-[#0d0d2b] border-l border-b border-white/10" />
-                      <h3 className="text-white font-bold text-lg leading-snug">{card.title}</h3>
-                      <p className="text-white/40 text-sm mt-0.5 mb-4">{card.company}</p>
-                      <ul className="flex flex-col gap-2.5">
+                      <h3 className="text-white font-bold text-2xl leading-snug">{card.title}</h3>
+                      <p className="text-white/75 text-base mt-0.5 mb-4">{card.company}</p>
+                      <ul className="flex flex-col gap-3">
                         {card.responsibilities.map((r) => (
-                          <li key={r} className="flex gap-2.5 text-white/60 text-sm leading-relaxed">
-                            <span className="mt-2 w-1 h-1 rounded-full bg-purple-400/70 flex-none" />
+                          <li key={r} className="flex gap-2.5 text-white/90 text-base leading-relaxed">
+                            <span className="mt-2 w-1.5 h-1.5 rounded-full bg-purple-400 flex-none" />
                             {r}
                           </li>
                         ))}
@@ -149,15 +149,15 @@ const Experience = () => {
                               shadow-[0_0_24px_rgba(168,85,247,0.07)]">
                 <div className="flex items-start justify-between gap-3 mb-3">
                   <div>
-                    <h3 className="text-white font-bold text-base leading-snug">{card.title}</h3>
-                    <p className="text-white/40 text-sm mt-0.5">{card.company}</p>
+                    <h3 className="text-white font-bold text-xl leading-snug">{card.title}</h3>
+                    <p className="text-white/75 text-base mt-0.5">{card.company}</p>
                   </div>
-                  <p className="text-white/35 text-xs font-medium whitespace-nowrap pt-0.5 text-right">{card.date}</p>
+                  <p className="text-white/60 text-xs font-medium whitespace-nowrap pt-0.5 text-right">{card.date}</p>
                 </div>
-                <ul className="flex flex-col gap-2">
+                <ul className="flex flex-col gap-2.5">
                   {card.responsibilities.map((r) => (
-                    <li key={r} className="flex gap-2 text-white/55 text-sm leading-relaxed">
-                      <span className="mt-2 w-1 h-1 rounded-full bg-purple-400/70 flex-none" />
+                    <li key={r} className="flex gap-2 text-white/90 text-base leading-relaxed">
+                      <span className="mt-2 w-1.5 h-1.5 rounded-full bg-purple-400 flex-none" />
                       {r}
                     </li>
                   ))}
