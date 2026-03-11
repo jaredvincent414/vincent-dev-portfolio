@@ -6,6 +6,7 @@ import BackgroundWeb from "./components/BackgroundWeb";
 import GalaxyLayer from "./components/GalaxyLayer";
 
 const Experience = lazy(() => import("./sections/Experience"));
+const Projects = lazy(() => import("./sections/Projects"));
 const Organisations = lazy(() => import("./sections/Organisations"));
 const TechStack = lazy(() => import("./sections/TechStack"));
 const Contact = lazy(() => import("./sections/Contact"));
@@ -30,6 +31,9 @@ const App = () => (
     <Hero />
     <Suspense fallback={<SectionLoader />}>
       <Experience />
+    </Suspense>
+    <Suspense fallback={<SectionLoader />}>
+      <Projects />
     </Suspense>
     <Suspense fallback={<SectionLoader />}>
       <TechStack />
