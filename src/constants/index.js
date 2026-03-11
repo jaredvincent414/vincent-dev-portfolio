@@ -1,5 +1,6 @@
 const navLinks = [
   { name: "Experience",   link: "#experience" },
+  { name: "Projects",     link: "#projects" },
   { name: "Skills",       link: "#skills" },
   { name: "Organisations",link: "#organisations" },
   { name: "Contact",      link: "#contact" },
@@ -153,6 +154,77 @@ const organisations = [
   { name: "Tamid",                    initials: "TM", color: "#14b8a6", logoPath: "/images/orgs/tamid.png" },
 ];
 
+const projects = [
+  {
+    title: "The Conspectus",
+    description:
+      "A digital publication platform for long-form journalism and editorial content. Built and deployed as a full production web application.",
+    image: "/projects/theconspectus.png",
+    gradient: null,
+    tags: ["Web", "Full Stack"],
+    liveUrl: "https://theconspectus.com/",
+    repoUrl: null,
+  },
+  {
+    title: "Digital Tools & Health Outcomes",
+    description:
+      "A Tableau data analysis exploring how differences in broadband access and telehealth adoption across U.S. states correlate with health outcomes such as life expectancy and mortality rates.",
+    image: "/projects/Techaccess_healthoutcome.png",
+    gradient: null,
+    tags: ["Tableau", "Data Analysis", "Public Health"],
+    liveUrl: "https://public.tableau.com/shared/6ZKCQGNWK?:display_count=n&:origin=viz_share_link",
+    repoUrl: null,
+  },
+  {
+    title: "Swiftdine",
+    description:
+      "An iOS food discovery and ordering app built with SwiftUI. Features real-time menu browsing, location-based restaurant search, and a smooth checkout flow with async networking.",
+    image: "/images/Swiftdine.png",
+    tags: ["SwiftUI", "iOS", "Swift"],
+    liveUrl: null,
+    repoUrl: "https://github.com/jaredvincent414/swiftdine",
+  },
+  {
+    title: "Branda",
+    description:
+      "A campus mobile platform scaled to 10,000+ users. Built with TypeScript, Node.js microservices, and SwiftUI. Led 6 engineers using Agile sprints and CI/CD release workflows.",
+    image: "/images/brandapp.png",
+    tags: ["TypeScript", "Node.js", "SwiftUI"],
+    liveUrl: null,
+    repoUrl: "https://github.com/jaredvincent414",
+  },
+  {
+    title: "ML Data Pipeline",
+    description:
+      "Distributed preprocessing pipeline processing 10,000+ datasets using parallelised batch execution across Linux compute environments. Reduced prototype-to-production time by 25%.",
+    image: null,
+    gradient: "linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4c1d95 100%)",
+    tags: ["Python", "ML", "Linux"],
+    liveUrl: null,
+    repoUrl: "https://github.com/jaredvincent414",
+  },
+  {
+    title: "Content Moderation Service",
+    description:
+      "Event-driven audio and video moderation pipelines handling 1,000+ concurrent streams. Implemented in Rust with non-blocking I/O, reducing harmful content detection latency by 38%.",
+    image: null,
+    gradient: "linear-gradient(135deg, #0c1a2e 0%, #0f3460 50%, #16213e 100%)",
+    tags: ["Rust", "Microservices", "DevOps"],
+    liveUrl: null,
+    repoUrl: "https://github.com/jaredvincent414",
+  },
+  {
+    title: "Developer Portfolio",
+    description:
+      "This portfolio — built with React 19, Three.js, and Tailwind CSS v4. Features an interactive 3D background mesh with cursor and scroll physics, a galaxy starfield, and GSAP scroll animations.",
+    image: null,
+    gradient: "linear-gradient(135deg, #1a0533 0%, #2d1b69 50%, #1a0533 100%)",
+    tags: ["React", "Three.js", "GSAP"],
+    liveUrl: null,
+    repoUrl: "https://github.com/jaredvincent414",
+  },
+];
+
 const expLogos = [
   {
     name: "brandapp",
@@ -239,6 +311,7 @@ export {
   counterItems,
   expCards,
   expLogos,
+  projects,
   organisations,
   testimonials,
   socialImgs,
