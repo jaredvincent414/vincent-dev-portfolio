@@ -55,13 +55,13 @@ const expCards = [
 ];
 
 const organisations = [
-  { name: "ColorStack",                initials: "CS", color: "#6366f1", logoPath: "/images/orgs/colorstack.png" },
-  { name: "CodePath",                  initials: "CP", color: "#10b981", logoPath: "/images/orgs/codepath.png" },
-  { name: "Blacks In Technology",      initials: "BT", color: "#8b5cf6", logoPath: "/images/orgs/bit.png" },
-  { name: "NSBE",                      initials: "NS", color: "#f59e0b", logoPath: "/images/orgs/nsbe.png" },
-  { name: "KenSAP",                    initials: "KS", color: "#3b82f6", logoPath: "/images/orgs/kensap.png" },
-  { name: "Education For All Children",initials: "EA", color: "#ec4899", logoPath: "/images/orgs/efac.png" },
-  { name: "Tamid",                     initials: "TM", color: "#14b8a6", logoPath: "/images/orgs/tamid.png" },
+  { name: "ColorStack",                 color: "#6366f1", logoPath: "/images/orgs/colorstack.png" },
+  { name: "CodePath",                   color: "#10b981", logoPath: "/images/orgs/codepath.png" },
+  { name: "Blacks In Technology",       color: "#8b5cf6", logoPath: "/images/orgs/bit.png" },
+  { name: "NSBE",                       color: "#f59e0b", logoPath: "/images/orgs/nsbe.png" },
+  { name: "KenSAP",                     color: "#3b82f6", logoPath: "/images/orgs/kensap.png" },
+  { name: "Education For All Children", color: "#ec4899", logoPath: "/images/orgs/efac.png" },
+  { name: "Tamid",                      color: "#14b8a6", logoPath: "/images/orgs/tamid.png" },
 ];
 
 const projects = [
@@ -70,7 +70,6 @@ const projects = [
     description:
       "A digital publication platform for long-form journalism and editorial content. Built and deployed as a full production web application.",
     image: "/projects/theconspectus.png",
-    gradient: null,
     tags: ["Web", "Full Stack"],
     liveUrl: "https://theconspectus.com/",
     repoUrl: null,
@@ -80,7 +79,6 @@ const projects = [
     description:
       "A Tableau data analysis exploring how differences in broadband access and telehealth adoption across U.S. states correlate with health outcomes such as life expectancy and mortality rates.",
     image: "/projects/Techaccess_healthoutcome.png",
-    gradient: null,
     tags: ["Tableau", "Data Analysis", "Public Health"],
     liveUrl: "https://public.tableau.com/shared/6ZKCQGNWK?:display_count=n&:origin=viz_share_link",
     repoUrl: null,
@@ -104,14 +102,22 @@ const projects = [
     repoUrl: "https://github.com/jaredvincent414",
   },
   {
+    title: "Campus Marketplace",
+    description:
+      "A student-first mobile marketplace for buying, selling, and connecting with students on campus. Features real-time messaging, listing discovery, and campus-verified accounts.",
+    image: "/projects/campus-marketplace.png",
+    tags: ["React Native", "Mobile", "Marketplace"],
+    liveUrl: null,
+    repoUrl: "https://github.com/jaredvincent414/Campus-Marketplace",
+  },
+  {
     title: "Developer Portfolio",
     description:
       "This portfolio — built with React 19, Three.js, and Tailwind CSS v4. Features an interactive 3D background mesh with cursor and scroll physics, a galaxy starfield, and GSAP scroll animations.",
-    image: null,
-    gradient: "linear-gradient(135deg, #1a0533 0%, #2d1b69 50%, #1a0533 100%)",
+    image: "/projects/portfolio.png",
     tags: ["React", "Three.js", "GSAP"],
-    liveUrl: null,
-    repoUrl: "https://github.com/jaredvincent414",
+    liveUrl: "https://vincentjared.com/",
+    repoUrl: "https://github.com/jaredvincent414/vincent-dev-portfolio",
   },
 ];
 
