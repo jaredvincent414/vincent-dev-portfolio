@@ -1,6 +1,6 @@
 # Vincent Jared — Developer Portfolio
 
-A personal developer portfolio built with React 19, Three.js, and Tailwind CSS v4. Features an interactive 3D background mesh, animated skill cards, a galaxy starfield, and a smooth scroll-driven layout.
+A personal developer portfolio built with React 19 and Tailwind CSS v4, with a markdown blog. Deliberately light: no 3D, no WebGL, one Canvas 2D starfield, and a ~326 KB JS bundle.
 
 ---
 
@@ -8,10 +8,11 @@ A personal developer portfolio built with React 19, Three.js, and Tailwind CSS v
 
 | Section | Description |
 |---|---|
-| **Hero** | Animated role cards (Software Engineering, ML/Data Science, DevOps, IT Assistant) with a live 3D room model |
+| **Hero** | Typographic hero with a rotating multilingual greeting and blaugrana name |
 | **Experience** | Vertical timeline with company logos, role descriptions, and dates |
+| **Projects** | Project cards with screenshots, tags, and live / repo links |
+| **Blogs** | Markdown blog — posts live in `src/posts/`, rendered as pages |
 | **Skills** | Categorised skill cards with animated progress bars and percentage counters |
-| **Organisations** | 3D rotating logo showcase (React Three Fiber) for clubs and communities |
 | **Contact** | Social links (LinkedIn, GitHub) and resume download |
 
 ---
@@ -21,9 +22,9 @@ A personal developer portfolio built with React 19, Three.js, and Tailwind CSS v
 | Category | Libraries / Tools |
 |---|---|
 | Framework | React 19 + Vite 7 |
-| 3D / WebGL | Three.js, `@react-three/fiber`, `@react-three/drei` |
 | Animation | GSAP 3 + ScrollTrigger, `@gsap/react` |
 | Styling | Tailwind CSS v4, Space Grotesk (Google Fonts) |
+| Blog | `marked`, markdown files in `src/posts/`, hash routing |
 | Canvas FX | HTML5 Canvas 2D API (galaxy starfield + shooting stars) |
 | Build | Vite, ESLint |
 
@@ -33,58 +34,60 @@ A personal developer portfolio built with React 19, Three.js, and Tailwind CSS v
 
 ```
 src/
-├── App.jsx                        # Root layout, lazy section loading, galaxy zone
+├── App.jsx                        # Root layout, hash route split, lazy sections
 ├── main.jsx
-├── index.css                      # Global styles, font import, base theme
+├── index.css                      # Global styles, @theme tokens, post prose styles
 │
 ├── constants/
-│   └── index.js                   # All content data (nav, experience, skills, orgs)
+│   └── index.js                   # Content data (nav links, experience, projects)
+│
+├── lib/
+│   ├── posts.js                   # Globs src/posts, parses frontmatter, renders markdown
+│   └── useHashRoute.js            # #/blogs/<slug> routing
+│
+├── posts/                         # Blog posts — one .md file per post
 │
 ├── sections/
-│   ├── Hero.jsx                   # Hero with role cards and 3D model
+│   ├── Hero.jsx                   # Typographic hero + Overview
 │   ├── Experience.jsx             # Timeline layout with company logos
+│   ├── Projects.jsx               # Project cards with tags and live / repo links
+│   ├── Blogs.jsx                  # Post list
+│   ├── PostPage.jsx               # Single post reading view
 │   ├── TechStack.jsx              # Skill category cards with GSAP animations
-│   ├── Organisations.jsx          # Three.js rotating org logo boxes
 │   ├── Contact.jsx                # Links + resume download
 │   └── Footer.jsx
 │
 └── components/
-    ├── BackgroundWeb.jsx          # Interactive Three.js node mesh background
     ├── GalaxyLayer.jsx            # Canvas starfield with twinkling + shooting stars
     ├── NavBar.jsx
-    ├── TitleHeader.jsx
-    ├── GlowCard.jsx
-    ├── Button.jsx
-    └── models/
-        ├── hero_models/           # HeroExperience, Room, HeroLights, Particles
-        ├── tech_logos/            # TechIconCardExperience
-        └── contact/               # Computer model
+    └── TitleHeader.jsx
 
 public/
 ├── images/
-│   ├── orgs/                      # Organisation logos (ColorStack, NSBE, etc.)
-│   ├── textures/                  # 3D model textures
-│   ├── Tuterra.png, Brandeis.png  # Experience company logos
-│   └── ...                        # Section icons, social images
-└── models/                        # GLTF/GLB 3D models
+│   └── ...                        # Experience company logos, project images
+├── projects/                      # Project screenshots
+└── resume/                        # Resume PDF
 ```
 
 ---
 
 ## Key Features
 
-### Interactive Background Mesh
-- Built with Three.js inside a React Three Fiber canvas
-- Nodes connect with edges when within proximity
-- **Cursor interaction** — nodes within radius are pushed by mouse movement
-- **Scroll speed boost** — scrolling accelerates node drift, decays naturally
-- **Node repulsion** — nodes push apart to prevent entangling
+### Blogs (markdown blog)
+- Every `.md` file in `src/posts/` becomes a post — no index to maintain
+- Frontmatter: `title`, `date` (YYYY-MM-DD), `tags`, `excerpt`, `draft`
+- `draft: true` hides a post from the list but keeps it at its direct URL
+- Reading time computed from word count
+- Routes are namespaced under `#/blogs/<slug>` so they never collide with the
+  page's own `#projects`-style anchors — and deep links work on any static host
+  with no rewrite rules
 
 ### Galaxy Starfield
-- Canvas 2D API rendering 280 violet-tinted stars with drift, twinkling, and radial glow
+- Canvas 2D API rendering 280 stars with drift, twinkling, and radial glow
 - 4 shooting stars with gradient tails that reset on exit
 - Nebula colour blobs via CSS radial gradients
-- Active from the Organisations section downward
+- Active behind the closing sections
+- The only animation loop on the page
 
 ### Skill Cards (TechStack)
 - 6 categories with per-category accent colours and emoji icons
@@ -98,10 +101,25 @@ public/
 - Cards alternate sides with arrow connectors
 - Dates shown on the opposite side from the card
 
-### Organisations (3D)
-- React Three Fiber scene with rotating boxes per organisation
-- `MeshBasicMaterial` preserves true logo colours (unaffected by scene lighting)
-- Click to expand detail, scroll-linked camera
+---
+
+## Writing a post
+
+Create a markdown file in `src/posts/`. The filename becomes the slug.
+
+```markdown
+---
+title: Why Rust finally clicked
+date: 2026-09-01
+tags: rust, systems
+excerpt: One sentence shown under the title in the post list.
+draft: true
+---
+
+Your post body here.
+```
+
+Set `draft: false` (or remove the line) to publish it.
 
 ---
 

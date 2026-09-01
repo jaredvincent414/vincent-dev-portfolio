@@ -2,15 +2,16 @@ import { lazy, Suspense } from "react";
 
 import Hero from "./sections/Hero";
 import Navbar from "./components/NavBar";
-import BackgroundWeb from "./components/BackgroundWeb";
 import GalaxyLayer from "./components/GalaxyLayer";
+import { useHashRoute } from "./lib/useHashRoute";
 
 const Experience = lazy(() => import("./sections/Experience"));
 const Projects = lazy(() => import("./sections/Projects"));
-const Organisations = lazy(() => import("./sections/Organisations"));
+const Blogs = lazy(() => import("./sections/Blogs"));
 const TechStack = lazy(() => import("./sections/TechStack"));
 const Contact = lazy(() => import("./sections/Contact"));
 const Footer = lazy(() => import("./sections/Footer"));
+const PostPage = lazy(() => import("./sections/PostPage"));
 
 const SectionLoader = () => (
   <div className="w-full px-5 md:px-20 py-24 flex flex-col gap-6 animate-pulse">
@@ -24,10 +25,9 @@ const SectionLoader = () => (
   </div>
 );
 
-const App = () => (
+// The full scrolling portfolio — everything except an individual post page.
+const HomePage = () => (
   <>
-    <BackgroundWeb />
-    <Navbar />
     <Hero />
     <Suspense fallback={<SectionLoader />}>
       <Experience />
@@ -36,22 +36,25 @@ const App = () => (
       <Projects />
     </Suspense>
     <Suspense fallback={<SectionLoader />}>
+      <Blogs />
+    </Suspense>
+    <Suspense fallback={<SectionLoader />}>
       <TechStack />
     </Suspense>
-    {/* Galaxy zone — starfield + nebula from Organisations downward */}
+    {/* Galaxy zone — starfield + nebula behind the closing sections */}
     <div className="relative">
       <GalaxyLayer />
 
       {/* Nebula colour blobs */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 1 }}>
         <div className="absolute top-[10%] left-[15%] w-[500px] h-[500px] rounded-full opacity-[0.07]"
-             style={{ background: "radial-gradient(circle, #7c3aed, transparent 70%)", filter: "blur(80px)" }} />
-        <div className="absolute top-[40%] right-[10%] w-[400px] h-[400px] rounded-full opacity-[0.05]"
-             style={{ background: "radial-gradient(circle, #2563eb, transparent 70%)", filter: "blur(90px)" }} />
-        <div className="absolute bottom-[20%] left-[40%] w-[350px] h-[350px] rounded-full opacity-[0.06]"
-             style={{ background: "radial-gradient(circle, #db2777, transparent 70%)", filter: "blur(70px)" }} />
-        <div className="absolute top-[65%] left-[5%] w-[300px] h-[300px] rounded-full opacity-[0.04]"
-             style={{ background: "radial-gradient(circle, #0ea5e9, transparent 70%)", filter: "blur(80px)" }} />
+             style={{ background: "radial-gradient(circle, #004d98, transparent 70%)", filter: "blur(80px)" }} />
+        <div className="absolute top-[40%] right-[10%] w-[400px] h-[400px] rounded-full opacity-[0.06]"
+             style={{ background: "radial-gradient(circle, #a50044, transparent 70%)", filter: "blur(90px)" }} />
+        <div className="absolute bottom-[20%] left-[40%] w-[350px] h-[350px] rounded-full opacity-[0.05]"
+             style={{ background: "radial-gradient(circle, #edbb00, transparent 70%)", filter: "blur(70px)" }} />
+        <div className="absolute top-[65%] left-[5%] w-[300px] h-[300px] rounded-full opacity-[0.05]"
+             style={{ background: "radial-gradient(circle, #2b6cb8, transparent 70%)", filter: "blur(80px)" }} />
       </div>
 
       {/* Fade-in from page above */}
@@ -59,9 +62,6 @@ const App = () => (
            style={{ background: "linear-gradient(to bottom, #0e1628, transparent)", zIndex: 2 }} />
 
       <div className="relative" style={{ zIndex: 3 }}>
-        <Suspense fallback={<SectionLoader />}>
-          <Organisations />
-        </Suspense>
         <Suspense fallback={<SectionLoader />}>
           <Contact />
         </Suspense>
@@ -72,5 +72,23 @@ const App = () => (
     </div>
   </>
 );
+
+const App = () => {
+  const route = useHashRoute();
+  const isPost = route?.name === "post";
+
+  return (
+    <>
+      <Navbar />
+      {isPost ? (
+        <Suspense fallback={<SectionLoader />}>
+          <PostPage slug={route.slug} />
+        </Suspense>
+      ) : (
+        <HomePage />
+      )}
+    </>
+  );
+};
 
 export default App;

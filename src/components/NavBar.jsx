@@ -34,12 +34,6 @@ const NavBar = () => {
           </ul>
         </nav>
 
-        <a href="#contact" className="contact-btn group hidden lg:flex">
-          <div className="inner">
-            <span>Contact me</span>
-          </div>
-        </a>
-
         {/* Hamburger — mobile only */}
         <button
           type="button"
@@ -77,15 +71,6 @@ const NavBar = () => {
                 </a>
               </li>
             ))}
-            <li>
-              <a
-                href="#contact"
-                onClick={closeMenu}
-                className="block py-3 text-white-50 hover:text-white transition-colors duration-200"
-              >
-                Contact me
-              </a>
-            </li>
           </ul>
         </nav>
       )}

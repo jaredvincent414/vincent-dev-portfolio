@@ -5,18 +5,18 @@ const NUM_SHOOTING = 4;
 
 const rand = (a, b) => Math.random() * (b - a) + a;
 
-// Violet palette — varying shades from soft lavender to deep violet
+// Blaugrana starfield — mostly pale white, tinted toward club blue and claret
 const STAR_COLORS = [
-  "#c4b5fd",  // violet-300
-  "#a78bfa",  // violet-400
-  "#8b5cf6",  // violet-500
-  "#7c3aed",  // violet-600
-  "#ddd6fe",  // violet-200 (soft)
-  "#ede9fe",  // violet-100 (near white)
-  "#e9d5ff",  // purple-200
-  "#d8b4fe",  // purple-300
-  "#f5f3ff",  // lightest violet-white
-  "#c084fc",  // purple-400
+  "#f5f7ff",  // near-white
+  "#e8eef8",  // cool white
+  "#dbe6f5",  // pale blue-white
+  "#b9cde8",  // soft blau
+  "#8fb0d8",  // blau, light
+  "#5b87c4",  // blau, mid
+  "#2b6cb8",  // blau-400
+  "#e8b8c6",  // pale grana
+  "#d98da5",  // grana, soft
+  "#edbb00",  // gold, rare warm accent
 ];
 
 const makeShootingStar = (initialDelay = true) => ({

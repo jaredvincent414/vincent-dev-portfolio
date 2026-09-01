@@ -1,0 +1,81 @@
+# Decap CMS — the editor behind /admin.
+#
+# Publishing here is a commit to this repo, which Vercel then rebuilds. Posts
+# stay in git: same diffs, same history, same files `npm run post` creates.
+#
+# `base_url` + `auth_endpoint` point at the OAuth functions in /api. GitHub's
+# OAuth flow needs a server to hold the client secret, and that pair is the only
+# server-side piece of this setup.
+
+backend:
+  name: github
+  repo: jaredvincent414/vincent-dev-portfolio
+  branch: main
+  base_url: https://vincentjared.com
+  auth_endpoint: api/auth
+  commit_messages:
+    create: 'post: create "{{slug}}"'
+    update: 'post: update "{{slug}}"'
+    delete: 'post: delete "{{slug}}"'
+    uploadMedia: 'post: upload {{path}}'
+    deleteMedia: 'post: delete {{path}}'
+
+# Editing from a phone means editing against production. `main` is what deploys,
+# so there is no staging branch to hide a half-written post — that is what the
+# Draft toggle below is for.
+media_folder: public/blog
+public_folder: /blog
+
+collections:
+  - name: posts
+    label: Posts
+    label_singular: Post
+    folder: src/posts
+    create: true
+    # Matches what `npm run post` generates, so files written either way sort
+    # and resolve identically.
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{title}} — {{year}}-{{month}}-{{day}}"
+    sortable_fields: [date, title]
+    fields:
+      - { label: Title, name: title, widget: string }
+
+      # The index sorts on this string, so it must stay YYYY-MM-DD with no time
+      # component — a datetime here would sort correctly but render as an
+      # invalid date on the card.
+      - label: Date
+        name: date
+        widget: datetime
+        date_format: YYYY-MM-DD
+        time_format: false
+        format: YYYY-MM-DD
+
+      # A select, not free text: a typo in a category silently opens a new
+      # section on the index instead of filing the post where you meant.
+      # Keep these options in step with src/lib/categories.js.
+      - label: Categories
+        name: categories
+        widget: select
+        multiple: true
+        default: [Notes]
+        options: [Systems, Engineering, Machine Learning, Notes]
+
+      - { label: Tags, name: tags, widget: list, required: false }
+
+      - label: Excerpt
+        name: excerpt
+        widget: text
+        required: false
+        hint: One line. Not shown on the index cards, but useful in the file.
+
+      - label: Cover image
+        name: cover
+        widget: image
+        required: false
+        hint: Optional. Without one the card draws a claret gradient tile.
+
+      # Defaults to true so a post published from a phone by accident stays off
+      # the index until you deliberately turn it off.
+      - { label: Draft, name: draft, widget: boolean, default: true }
+
+      - { label: Body, name: body, widget: markdown }
