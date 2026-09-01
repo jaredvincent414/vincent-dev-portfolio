@@ -3,7 +3,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import HeroExperience from "../components/models/hero_models/HeroExperience";
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -38,174 +38,109 @@ const useTypewriter = (words, typeSpeed = 75, deleteSpeed = 40, pause = 1800) =>
 
 // ── Data ────────────────────────────────────────────────────────────────────
 const GREETINGS = [
-  { greeting: "Hi, I'm",           sub: "Let's connect!" },
-  { greeting: "Bonjour, je suis",   sub: "Connectons-nous !" },
-  { greeting: "Hola, soy",          sub: "¡Conectémonos!" },
-  { greeting: "Ciao, sono",         sub: "Connettiamoci!" },
-  { greeting: "Olá, eu sou",        sub: "Vamos nos conectar!" },
-  { greeting: "Hallo, ich bin",     sub: "Lass uns verbinden!" },
-  { greeting: "こんにちは、私は",     sub: "つながりましょう！" },
-  { greeting: "안녕하세요, 저는",    sub: "연결해요!" },
-  { greeting: "Jambo, mimi ni",     sub: "Tuungane!" },
-];
-
-// V        i         n         c         e         n         t
-// blue → cyan → pink → orange-pink → orange → deep-orange → golden
-const NAME_COLORS = ["#4facfe", "#00d2ff", "#ff6fa5", "#ff8c42", "#ff9f1c", "#f77f00", "#fcbf49"];
-
-// ── Gem icon ────────────────────────────────────────────────────────────────
-const GemIcon = ({ color1, color2, uid }) => (
-  <svg width="56" height="56" viewBox="0 0 60 60" fill="none" aria-hidden="true">
-    <defs>
-      <linearGradient id={`g-${uid}`} x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor={color1} />
-        <stop offset="100%" stopColor={color2} />
-      </linearGradient>
-    </defs>
-    <polygon points="30,3 53,16.5 53,43.5 30,57 7,43.5 7,16.5" fill={`url(#g-${uid})`} />
-    <polygon points="30,3 53,16.5 30,30"  fill="white" fillOpacity="0.20" />
-    <polygon points="7,16.5 30,30 30,3"   fill="white" fillOpacity="0.09" />
-    <polygon points="30,30 53,43.5 30,57" fill="black" fillOpacity="0.20" />
-    <polygon points="30,57 7,43.5 30,30"  fill="black" fillOpacity="0.11" />
-    <polygon points="7,16.5 30,30 7,43.5" fill="white" fillOpacity="0.05" />
-    <polygon points="53,16.5 53,43.5 30,30" fill="black" fillOpacity="0.07" />
-    <circle cx="36" cy="18" r="3" fill="white" fillOpacity="0.30" />
-  </svg>
-);
-
-const roles = [
-  { uid: "swe",  title: "Software Engineering", color1: "#4facfe", color2: "#00f2fe", border: "linear-gradient(135deg,#4facfe,#00c6fb)" },
-  { uid: "ml",   title: "Machine Learning / Data Science", color1: "#43e97b", color2: "#38f9d7", border: "linear-gradient(135deg,#43e97b,#38f9d7)" },
-  { uid: "devops", title: "DevOps",             color1: "#667eea", color2: "#764ba2", border: "linear-gradient(135deg,#667eea,#764ba2)" },
-  { uid: "it",   title: "IT Assistant",         color1: "#a855f7", color2: "#7c3aed", border: "linear-gradient(135deg,#a855f7,#c084fc)" },
+  "Hi, I'm", "Bonjour, je suis", "Hola, soy", "Ciao, sono", "Olá, eu sou",
+  "Hallo, ich bin", "こんにちは、私は", "안녕하세요, 저는", "Jambo, mimi ni",
 ];
 
 // ── Component ────────────────────────────────────────────────────────────────
 const Hero = () => {
-  const greetingWords              = GREETINGS.map((g) => g.greeting);
-  const { displayed, index: gIdx } = useTypewriter(greetingWords);
-  const currentSub                 = GREETINGS[gIdx].sub;
+  const { displayed } = useTypewriter(GREETINGS);
+  const [photoOk, setPhotoOk] = useState(false);
 
   useGSAP(() => {
-    // Role cards stagger in on scroll
-    gsap.fromTo(".role-card", { y: 60, opacity: 0, scale: 0.92 }, {
-      y: 0, opacity: 1, scale: 1, stagger: 0.15, duration: 0.8,
-      ease: "back.out(1.4)",
-      scrollTrigger: { trigger: ".role-cards-grid", start: "top 82%" },
-    });
-
-    // Overview heading slides in from left
-    gsap.fromTo(".overview-heading", { x: -40, opacity: 0 }, {
-      x: 0, opacity: 1, duration: 0.9, ease: "power2.out",
-      scrollTrigger: { trigger: ".overview-heading", start: "top 85%" },
+    gsap.fromTo(".intro-block", { y: 40, opacity: 0 }, {
+      y: 0, opacity: 1, duration: 0.9, ease: "power2.out",
     });
   });
 
   return (
-    <section id="hero" className="relative overflow-hidden">
+    <section id="hero" className="relative overflow-hidden px-6 md:px-20 pt-28 pb-16 md:pt-32 md:pb-20">
 
-      {/* ── Full-screen 3D scene ── */}
-      <div className="relative w-full h-screen">
-        <HeroExperience />
-
-        {/* ── Scroll indicator — sits at bottom of the 3D viewport, above Overview ── */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 pointer-events-none
-                        flex flex-col items-center gap-2">
-          <div className="scroll-mouse">
-            <div className="scroll-dot" />
-          </div>
-        </div>
+      {/* Static blaugrana glow — pure CSS, no render loop */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <div className="absolute top-[12%] left-[8%] w-[620px] h-[620px] max-w-[90vw] rounded-full opacity-[0.10]"
+             style={{ background: "radial-gradient(circle, #a50044, transparent 70%)", filter: "blur(90px)" }} />
+        <div className="absolute bottom-[10%] right-[6%] w-[520px] h-[520px] max-w-[90vw] rounded-full opacity-[0.10]"
+             style={{ background: "radial-gradient(circle, #004d98, transparent 70%)", filter: "blur(100px)" }} />
       </div>
 
-      {/* ── Text overlay — pointer-events-none so 3D stays interactive ── */}
-      <div className="absolute top-0 left-0 w-full h-screen z-10 flex items-start
-                      pointer-events-none"
-           style={{ paddingTop: "15vh", paddingLeft: "clamp(1.5rem, 20%, 280px)" }}>
-        <div className="flex items-start gap-3 md:gap-4">
+      <div className={`relative mx-auto grid gap-12 lg:gap-16 items-start
+                       ${photoOk ? "max-w-6xl grid-cols-1 lg:grid-cols-2" : "max-w-3xl grid-cols-1"}`}>
 
-          {/* Accent: purple dot + fading gradient line */}
-          <div className="flex flex-col items-center flex-none mt-1">
-            <div className="w-3 h-3 md:w-4 md:h-4 rounded-full bg-purple-500 shadow-[0_0_8px_2px_rgba(168,85,247,0.6)]" />
-            <div className="w-[2px] h-20 md:h-28 mt-1 bg-gradient-to-b from-purple-500 via-blue-400 to-transparent rounded-full" />
-          </div>
+        {/* Left — eyebrow, name, role, then the short version of who I am */}
+        <div className="intro-block flex flex-col">
 
-          {/* Text stack */}
-          <div className="flex flex-col gap-1 md:gap-2">
-            {/* Greeting + name on ONE line */}
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-black leading-tight tracking-tight drop-shadow-xl">
-              <span className="text-white">
-                {displayed}
-                <span className="hero-cursor" aria-hidden="true">|</span>
-                {" "}
-              </span>
-              {"Vincent".split("").map((letter, i) => (
-                <span key={i} style={{ color: NAME_COLORS[i % NAME_COLORS.length] }}>
-                  {letter}
-                </span>
-              ))}
-            </h1>
-
-            {/* Tagline — changes with language */}
-            <p className="text-white-50 text-sm md:text-lg font-medium mt-1 drop-shadow-md">
-              {currentSub}
+          {/* Greeting sits above the name so its changing width can never shove
+              it sideways. min-h holds the line while it deletes back to empty. */}
+          <div className="flex items-center gap-3 mb-8">
+            <span className="w-10 h-px bg-grana-500 flex-none" aria-hidden="true" />
+            <p className="font-mono text-[11px] md:text-xs tracking-[0.2em] uppercase text-white/65 min-h-[1.5em]">
+              {displayed}
+              <span className="hero-cursor" aria-hidden="true">|</span>
             </p>
           </div>
+
+          {/* Name carries the section on its own: two lines, the surname dropped
+              back so the eye lands on the given name first. */}
+          <h1 className="font-mono font-bold leading-[0.95] tracking-tighter mb-7">
+            <span className="block text-white text-5xl md:text-7xl">Vincent</span>
+            <span className="block text-white/45 text-5xl md:text-7xl">Jared</span>
+          </h1>
+
+          <p className="font-mono text-sm md:text-base text-white/75 mb-8">
+            <span className="text-grana-300" aria-hidden="true">— </span>
+            Software Engineer · Brandeis University
+          </p>
+
+          <div className="font-mono text-sm leading-[1.85] text-white/65 space-y-4 max-w-lg mb-10">
+            <p>
+              Computer Science and Quantitative Economics, oriented toward
+              backend systems, event-driven architecture, and the unglamorous
+              infrastructure that everything else runs on.
+            </p>
+            <p>
+              Outside of software I play soccer, watch Pedri orchestrate
+              Barcelona&apos;s midfield, and write about what I learn building things.
+            </p>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-4">
+            <a href="#projects"
+               className="px-7 py-3.5 rounded-lg bg-grana-500 text-white font-mono text-xs
+                          tracking-[0.15em] uppercase hover:bg-grana-400
+                          transition-colors duration-200">
+              See my work
+            </a>
+            <a href="#blogs"
+               className="px-7 py-3.5 rounded-lg border border-white/25 text-white/80 font-mono text-xs
+                          tracking-[0.15em] uppercase hover:border-white/50 hover:text-white
+                          transition-colors duration-200">
+              Read the blog
+            </a>
+          </div>
         </div>
+
+        {/* Right — portrait (when there is one) above the numbers */}
+        <div className="flex flex-col gap-6">
+
+          {/* The frame only appears once the photo loads, so a missing file
+              leaves no empty box. Drop one at public/images/vincent.jpg.
+              Not lazy: a lazy image inside a display:none box is never fetched. */}
+          <div className={`relative w-full aspect-square max-w-[340px] lg:ml-auto rounded-2xl overflow-hidden
+                           border border-white/[0.10] bg-white/[0.03] ${photoOk ? "" : "hidden"}`}>
+            <img
+              src="/images/vincent.jpg"
+              alt="Vincent Jared"
+              className="w-full h-full object-cover"
+              onLoad={() => setPhotoOk(true)}
+              onError={() => setPhotoOk(false)}
+            />
+          </div>
+
+          {/* gap-px over a light background draws the hairlines */}
+        </div>
+
       </div>
-
-      {/* ── About / Overview ── */}
-      <section id="about" className="py-24">
-        <div className="container mx-auto px-6 md:px-20">
-
-          {/* Header */}
-          <div className="mb-14 overview-heading">
-            <p className="text-[#839CB5] text-xs uppercase tracking-[0.3em] mb-4">
-              Introduction
-            </p>
-            <h2 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-none">
-              Overview.
-            </h2>
-            <p className="text-gray-300 max-w-2xl leading-relaxed text-base md:text-lg">
-              Hi, I am Vincent — a Computer Science and Economics student at Brandeis University
-              who is genuinely obsessed with building things that matter. I work across the full
-              stack: React frontends, Node.js APIs, ML pipelines in Python, and performance-critical
-              services in Rust and Swift. I care about writing software that is fast, reliable,
-              and actually useful to real people.
-              <br /><br />
-              When I am not staring at a terminal, I am either on the pitch playing soccer or
-              watching Pedri orchestrate FC Barcelona&apos;s midfield and wondering how one
-              person can make it all look that effortless.
-            </p>
-          </div>
-
-          {/* Role cards */}
-          <div className="role-cards-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
-            {roles.map((role) => (
-              <div
-                key={role.uid}
-                className="role-card opacity-0 p-px rounded-2xl group
-                           transition-transform duration-300 hover:-translate-y-2 hover:scale-[1.03]"
-                style={{ background: role.border }}
-              >
-                <div className="bg-[#0d0d1a] rounded-2xl p-5 md:p-8 h-full flex flex-col
-                                items-center justify-center gap-4 text-center
-                                min-h-[160px] sm:min-h-[190px] md:min-h-[210px]
-                                transition-colors duration-300 group-hover:bg-[#12122a]">
-                  <div className="transition-transform duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_12px_rgba(168,85,247,0.5)]">
-                    <GemIcon color1={role.color1} color2={role.color2} uid={role.uid} />
-                  </div>
-                  <h3 className="text-white font-bold text-sm md:text-base leading-snug
-                                 transition-colors duration-300 group-hover:text-white">
-                    {role.title}
-                  </h3>
-                </div>
-              </div>
-            ))}
-          </div>
-
-        </div>
-      </section>
-
     </section>
   );
 };

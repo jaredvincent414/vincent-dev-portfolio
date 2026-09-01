@@ -7,193 +7,146 @@ import TitleHeader from "../components/TitleHeader";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const skillCategories = [
+// A 4-3-3. Position says what a tool does and how it relates to the rest —
+// which is honest in a way a self-assigned percentage never was.
+const formation = [
   {
-    title: "Programming Languages",
-    icon: "⌨️",
-    accent: "#a855f7",
-    skills: [
-      { name: "Rust",       pct: 88 },
-      { name: "TypeScript", pct: 87 },
-      { name: "Python",     pct: 100 },
-      { name: "Java",       pct: 100 },
-      { name: "Swift",      pct: 75 },
-      { name: "C / C++",   pct: 70 },
+    line: "Attack",
+    abbr: "ATT",
+    players: [
+      { name: "Rust", note: "state sync, structural diffing" },
+      { name: "Go", note: "sandboxed subprocess services" },
+      { name: "Event-driven systems", note: "event sourcing, microservices" },
     ],
   },
   {
-    title: "Systems & Infrastructure",
-    icon: "🖥️",
-    accent: "#3b82f6",
-    skills: [
-      { name: "Linux / Unix",                pct: 85 },
-      { name: "Multithreading & Concurrency", pct: 88 },
-      { name: "Microservices",               pct: 85 },
-      { name: "Docker & Terraform",          pct: 78 },
-      { name: "CI / CD",                     pct: 80 },
+    line: "Midfield",
+    abbr: "MID",
+    players: [
+      { name: "Python", note: "pipelines, parsing, data work" },
+      { name: "TypeScript / Node.js", note: "APIs and services" },
+      { name: "C# / ASP.NET Core", note: "containerized backends" },
     ],
   },
   {
-    title: "Backend & APIs",
-    icon: "⚙️",
-    accent: "#06b6d4",
-    skills: [
-      { name: "Node.js",      pct: 85 },
-      { name: "Spring Boot",  pct: 72 },
-      { name: "REST APIs",    pct: 90 },
-      { name: "Async / Await & Fault Tolerance", pct: 85 },
-      { name: ".NET",         pct: 65 },
+    line: "Defence",
+    abbr: "DEF",
+    players: [
+      { name: "Docker & Kubernetes", note: "reproducible environments" },
+      { name: "AWS", note: "Lambda, ECS" },
+      { name: "Terraform & CI/CD", note: "ship it the same way twice" },
+      { name: "Prometheus & Grafana", note: "SLOs you can actually measure" },
     ],
   },
   {
-    title: "Databases & Cloud",
-    icon: "☁️",
-    accent: "#10b981",
-    skills: [
-      { name: "PostgreSQL / MySQL",         pct: 83 },
-      { name: "MongoDB",                    pct: 78 },
-      { name: "Supabase",                   pct: 80 },
-      { name: "AWS (EC2, S3, RDS, Aurora)", pct: 75 },
-      { name: "Microsoft Azure",            pct: 65 },
-    ],
-  },
-  {
-    title: "AI / ML",
-    icon: "🤖",
-    accent: "#f59e0b",
-    skills: [
-      { name: "LLM Pipelines & RAG",        pct: 82 },
-      { name: "Distributed Preprocessing",  pct: 80 },
-      { name: "Context Window Optimization", pct: 75 },
-    ],
-  },
-  {
-    title: "Mobile & Design",
-    icon: "📱",
-    accent: "#ec4899",
-    skills: [
-      { name: "Swift / SwiftUI", pct: 78 },
-      { name: "Xcode",           pct: 75 },
-      { name: "Figma",           pct: 72 },
+    line: "Keeper",
+    abbr: "GK",
+    players: [
+      { name: "PostgreSQL & Redis", note: "everything ends up here" },
     ],
   },
 ];
 
-const BAR_COLOR = "#a855f7";
-const PCT_COLOR = "rgba(168, 85, 247, 0.55)";
+// The long tail — real experience, just not the first eleven.
+const bench = [
+  "Java", "Spring Boot", "SQL Server", "MongoDB", "GraphQL", "FastAPI",
+  "pgvector", "LLM APIs", "Linux", "Bash", "Git", "JUnit",
+];
 
-const SkillBar = ({ name, pct }) => (
-  <div className="mb-5 group/bar">
-    <div className="flex justify-between items-center mb-1.5">
-      <p className="text-white/70 text-sm group-hover/bar:text-white transition-colors duration-200">
-        {name}
-      </p>
-      <span
-        className="text-xs font-bold tabular-nums"
-        style={{ color: PCT_COLOR }}
-        data-pct={pct}
-      >
-        0%
-      </span>
-    </div>
-    <div className="w-full h-[5px] rounded-full bg-white/[0.07] overflow-hidden">
-      <div
-        className="skill-bar h-full rounded-full"
-        style={{
-          width: `${pct}%`,
-          background: `linear-gradient(90deg, ${BAR_COLOR}99, ${BAR_COLOR})`,
-          boxShadow: `0 0 8px ${BAR_COLOR}66`,
-          transformOrigin: "left",
-          transform: "scaleX(0)",
-        }}
-      />
-    </div>
+// Faint pitch markings. Decorative only — the layout reads correctly without it.
+const Pitch = () => (
+  <svg
+    className="absolute inset-0 w-full h-full hidden md:block pointer-events-none"
+    viewBox="0 0 100 130"
+    preserveAspectRatio="none"
+    aria-hidden="true"
+  >
+    <g fill="none" stroke="rgba(255,255,255,0.07)" strokeWidth="0.35">
+      <rect x="1" y="1" width="98" height="128" rx="1" />
+      <line x1="1" y1="65" x2="99" y2="65" />
+      <circle cx="50" cy="65" r="13" />
+      {/* Penalty areas */}
+      <rect x="24" y="1" width="52" height="18" />
+      <rect x="24" y="111" width="52" height="18" />
+      {/* Six-yard boxes */}
+      <rect x="38" y="1" width="24" height="7" />
+      <rect x="38" y="122" width="24" height="7" />
+    </g>
+  </svg>
+);
+
+const Player = ({ player }) => (
+  <div
+    className="player-chip rounded-xl border border-white/[0.10] bg-white/[0.03]
+               px-4 py-3 w-full sm:w-44 text-center
+               transition-all duration-300
+               hover:border-grana-500/45 hover:bg-grana-500/[0.07] hover:-translate-y-1"
+  >
+    <p className="text-white text-sm font-bold leading-snug">{player.name}</p>
+    <p className="text-white/65 text-[11px] leading-snug mt-1">{player.note}</p>
   </div>
 );
 
 const TechStack = () => {
-  const sectionRef = useRef(null);
+  const pitchRef = useRef(null);
 
   useGSAP(() => {
-    // Animate skill bars + counters together
-    sectionRef.current.querySelectorAll(".skill-bar").forEach((bar) => {
-      const counterEl = bar.closest(".group\\/bar")?.querySelector("[data-pct]");
-      const target = counterEl ? parseInt(counterEl.dataset.pct, 10) : 0;
-
-      ScrollTrigger.create({
-        trigger: bar,
-        start: "top 90%",
-        once: true,
-        onEnter() {
-          gsap.to(bar, { scaleX: 1, duration: 1.2, ease: "power3.out" });
-          if (counterEl) {
-            gsap.to({ val: 0 }, {
-              val: target,
-              duration: 1.2,
-              ease: "power2.out",
-              onUpdate() {
-                counterEl.textContent = `${Math.round(this.targets()[0].val)}%`;
-              },
-            });
-          }
-        },
-      });
-    });
-
-    // Cards stagger in
     gsap.fromTo(
-      ".skill-category",
-      { opacity: 0, y: 40, scale: 0.97 },
+      ".player-chip",
+      { y: 24, opacity: 0 },
       {
-        opacity: 1, y: 0, scale: 1,
-        stagger: 0.1,
-        duration: 0.7,
-        ease: "power2.out",
-        scrollTrigger: { trigger: sectionRef.current, start: "top 78%" },
+        y: 0, opacity: 1, stagger: 0.06, duration: 0.6, ease: "power2.out",
+        scrollTrigger: { trigger: pitchRef.current, start: "top 80%" },
       }
     );
   }, []);
 
   return (
-    <section id="skills" ref={sectionRef} className="py-20 md:py-32 px-5 md:px-20">
+    <section id="skills" className="relative z-10 py-12 md:py-16 px-5 md:px-20">
       <TitleHeader title="Skills" sub="What I work with" />
 
-      <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-        {skillCategories.map((cat) => (
-          <div
-            key={cat.title}
-            className="skill-category opacity-0 rounded-2xl px-7 py-6
-                       border border-white/[0.08] bg-[#0f0e24]
-                       relative overflow-hidden
-                       transition-all duration-300
-                       hover:border-white/20 hover:-translate-y-1
-                       group"
-            style={{ boxShadow: `0 0 0 0 ${cat.accent}00` }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.boxShadow = `0 0 32px ${cat.accent}22, inset 0 0 32px ${cat.accent}08`;
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.boxShadow = "none";
-            }}
-          >
-            {/* Subtle corner glow */}
-            <div
-              className="absolute -top-10 -right-10 w-32 h-32 rounded-full opacity-[0.12] pointer-events-none
-                          transition-opacity duration-300 group-hover:opacity-[0.22]"
-              style={{ background: `radial-gradient(circle, ${cat.accent}, transparent 70%)`, filter: "blur(20px)" }}
-            />
+      <div ref={pitchRef} className="relative mt-10 md:mt-12 max-w-4xl mx-auto">
+        <Pitch />
 
-            {/* Header */}
-            <div className="flex items-center gap-3 mb-6">
-              <span className="text-xl">{cat.icon}</span>
-              <h3 className="text-white font-bold text-base tracking-wide">{cat.title}</h3>
+        <div className="relative flex flex-col gap-10 md:gap-12 py-2 md:py-8 md:px-8">
+          {formation.map((row) => (
+            <div key={row.line} className="flex flex-col gap-3">
+              <p className="text-grana-300 text-[11px] font-semibold tracking-[0.25em] uppercase
+                            text-center md:text-left md:pl-1">
+                {row.abbr} · {row.line}
+              </p>
+
+              <div className="flex flex-col sm:flex-row sm:flex-wrap justify-center items-stretch gap-3 md:gap-4">
+                {row.players.map((player) => (
+                  <Player key={player.name} player={player} />
+                ))}
+              </div>
             </div>
+          ))}
+        </div>
+      </div>
 
-            {cat.skills.map((s) => (
-              <SkillBar key={s.name} name={s.name} pct={s.pct} />
-            ))}
-          </div>
-        ))}
+      <p className="text-center text-white/60 text-sm mt-8 md:mt-10 italic">
+        A 4-3-3. The midfield does the work.
+      </p>
+
+      {/* Bench */}
+      <div className="max-w-4xl mx-auto mt-10 pt-8 border-t border-white/[0.08]">
+        <p className="text-white/65 text-[10px] font-semibold tracking-[0.25em] uppercase text-center mb-5">
+          On the bench
+        </p>
+        <div className="flex flex-wrap justify-center gap-2">
+          {bench.map((item) => (
+            <span
+              key={item}
+              className="text-xs px-3 py-1.5 rounded-full border border-white/[0.10]
+                         bg-white/[0.02] text-white/55
+                         transition-colors duration-200 hover:text-white/85 hover:border-white/25"
+            >
+              {item}
+            </span>
+          ))}
+        </div>
       </div>
     </section>
   );

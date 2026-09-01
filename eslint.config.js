@@ -5,9 +5,20 @@ import reactRefresh from 'eslint-plugin-react-refresh'
 import { defineConfig, globalIgnores } from 'eslint/config'
 
 export default defineConfig([
-  globalIgnores(['dist']),
+  globalIgnores(['dist', '**/dist', '.claude']),
   {
-    files: ['**/*.{js,jsx}'],
+    // Server-side: the OAuth functions and the post scaffolder. Linted with
+    // Node globals, and .mjs included so scripts/ is actually covered.
+    files: ['api/**/*.js', 'scripts/**/*.{js,mjs}'],
+    extends: [js.configs.recommended],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      globals: globals.node,
+    },
+  },
+  {
+    files: ['src/**/*.{js,jsx}', '*.{js,jsx}'],
     extends: [
       js.configs.recommended,
       reactHooks.configs['recommended-latest'],
