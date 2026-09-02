@@ -9,7 +9,7 @@ export default defineConfig([
   {
     // Server-side: the OAuth functions and the post scaffolder. Linted with
     // Node globals, and .mjs included so scripts/ is actually covered.
-    files: ['api/**/*.js', 'scripts/**/*.{js,mjs}'],
+    files: ['api/**/*.js', 'scripts/**/*.{js,mjs}', 'vite.config.js'],
     extends: [js.configs.recommended],
     languageOptions: {
       ecmaVersion: 'latest',
@@ -18,7 +18,7 @@ export default defineConfig([
     },
   },
   {
-    files: ['src/**/*.{js,jsx}', '*.{js,jsx}'],
+    files: ['src/**/*.{js,jsx}'],
     extends: [
       js.configs.recommended,
       reactHooks.configs['recommended-latest'],

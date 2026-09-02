@@ -1,5 +1,6 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap");
+@import "katex/dist/katex.min.css";
 @import "tailwindcss";
 
 :root {
@@ -206,4 +207,95 @@ section {
   border: none;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   margin: 2.5em 0;
+}
+
+/* ── Blog post extras ────────────────────────────────────────────────────── */
+
+/* Headings are wrapped in an anchor so the whole line is clickable. Undo the
+   prose link treatment for them, and reveal the marker only on hover. */
+.post-body .heading-anchor {
+  color: inherit;
+  text-decoration: none;
+}
+
+.post-body .heading-anchor-marker {
+  margin-left: 0.4em;
+  color: var(--color-grana-400);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.post-body .heading-anchor:hover .heading-anchor-marker,
+.post-body .heading-anchor:focus-visible .heading-anchor-marker {
+  opacity: 1;
+}
+
+/* Anchor jumps land clear of the fixed navbar. */
+.post-body :is(h2, h3, h4) {
+  scroll-margin-top: 6rem;
+}
+
+/* Shiki writes its own colours inline; these rules only own the frame. The
+   plain-text fallback matches, so an unhighlighted block looks deliberate. */
+.post-body pre.shiki,
+.post-body pre.shiki-plain {
+  background: #0b0b1c;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 1.1em 1.3em;
+  overflow-x: auto;
+}
+
+.post-body pre.shiki code {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 0.86em;
+}
+
+.post-body table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9em;
+  display: block;
+  overflow-x: auto;
+}
+
+.post-body :is(th, td) {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.55em 0.8em;
+  text-align: left;
+}
+
+.post-body th {
+  color: #fff;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* Long display equations scroll rather than widening the page. */
+.post-body .katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.4em 0;
+}
+
+/* ── Hero event stream ───────────────────────────────────────────────────── */
+
+/* Lines arrive top to bottom, staggered from the inline animation-delay. */
+@keyframes hero-event-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.hero-event {
+  opacity: 0;
+  animation: hero-event-in 0.5s ease-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-event {
+    animation: none;
+    opacity: 1;
+  }
 }

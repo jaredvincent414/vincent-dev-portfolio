@@ -3,6 +3,9 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+import HeroEventStream from "../components/HeroEventStream";
+import { events as heroEvents } from "virtual:hero-events";
+
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -64,8 +67,13 @@ const Hero = () => {
              style={{ background: "radial-gradient(circle, #004d98, transparent 70%)", filter: "blur(100px)" }} />
       </div>
 
+      {/* The second column exists only when something fills it — the portrait,
+          the event stream, or both. With neither, the hero closes back to a
+          single centred column and looks deliberate rather than lopsided. */}
       <div className={`relative mx-auto grid gap-12 lg:gap-16 items-start
-                       ${photoOk ? "max-w-6xl grid-cols-1 lg:grid-cols-2" : "max-w-3xl grid-cols-1"}`}>
+                       ${photoOk || heroEvents.length > 0
+                         ? "max-w-6xl grid-cols-1 lg:grid-cols-2"
+                         : "max-w-3xl grid-cols-1"}`}>
 
         {/* Left — eyebrow, name, role, then the short version of who I am */}
         <div className="intro-block flex flex-col">
@@ -120,7 +128,7 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Right — portrait (when there is one) above the numbers */}
+        {/* Right — portrait (when there is one) above the event stream */}
         <div className="flex flex-col gap-6">
 
           {/* The frame only appears once the photo loads, so a missing file
@@ -137,7 +145,7 @@ const Hero = () => {
             />
           </div>
 
-          {/* gap-px over a light background draws the hairlines */}
+          <HeroEventStream />
         </div>
 
       </div>

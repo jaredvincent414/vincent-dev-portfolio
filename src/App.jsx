@@ -3,7 +3,7 @@ import { lazy, Suspense } from "react";
 import Hero from "./sections/Hero";
 import Navbar from "./components/NavBar";
 import GalaxyLayer from "./components/GalaxyLayer";
-import { useHashRoute } from "./lib/useHashRoute";
+import { useRoute } from "./lib/useRoute";
 
 const Experience = lazy(() => import("./sections/Experience"));
 const Projects = lazy(() => import("./sections/Projects"));
@@ -74,8 +74,8 @@ const HomePage = () => (
 );
 
 const App = () => {
-  const route = useHashRoute();
-  const isPost = route?.name === "post";
+  const route = useRoute();
+  const isPost = route.name === "post";
 
   return (
     <>

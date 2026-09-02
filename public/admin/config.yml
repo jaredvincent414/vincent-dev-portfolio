@@ -22,19 +22,19 @@ backend:
 
 # Editing from a phone means editing against production. `main` is what deploys,
 # so there is no staging branch to hide a half-written post — that is what the
-# Draft toggle below is for.
-media_folder: public/blog
-public_folder: /blog
+# Draft toggle below is for: drafts are dropped from the production build.
+media_folder: public/blog-media
+public_folder: /blog-media
 
 collections:
   - name: posts
     label: Posts
     label_singular: Post
-    folder: src/posts
+    folder: content/blog
     create: true
     # Matches what `npm run post` generates, so files written either way sort
     # and resolve identically.
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    slug: "{{slug}}"
     summary: "{{title}} — {{year}}-{{month}}-{{day}}"
     sortable_fields: [date, title]
     fields:
@@ -50,29 +50,25 @@ collections:
         time_format: false
         format: YYYY-MM-DD
 
-      # A select, not free text: a typo in a category silently opens a new
-      # section on the index instead of filing the post where you meant.
+      # A select, not free text: the build fails on an unknown category, so a
+      # typo here would break the deploy rather than misfile the post.
       # Keep these options in step with src/lib/categories.js.
-      - label: Categories
-        name: categories
+      - label: Category
+        name: category
         widget: select
-        multiple: true
-        default: [Notes]
-        options: [Systems, Engineering, Machine Learning, Notes]
+        default: notes
+        options:
+          - { label: Deep Dive, value: deep-dive }
+          - { label: Build Log, value: build-log }
+          - { label: Research, value: research }
+          - { label: Notes, value: notes }
 
       - { label: Tags, name: tags, widget: list, required: false }
 
-      - label: Excerpt
-        name: excerpt
+      - label: Summary
+        name: summary
         widget: text
-        required: false
-        hint: One line. Not shown on the index cards, but useful in the file.
-
-      - label: Cover image
-        name: cover
-        widget: image
-        required: false
-        hint: Optional. Without one the card draws a claret gradient tile.
+        hint: One line, shown on the index cards.
 
       # Defaults to true so a post published from a phone by accident stays off
       # the index until you deliberately turn it off.
