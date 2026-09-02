@@ -1,13 +1,17 @@
-// The blog's category list, kept in its own module so both the site and the
-// `npm run post` scaffolder read the same source. Declaring the order here
-// (rather than deriving it from the posts) keeps the category nav stable as
-// posts come and go — otherwise publishing could silently reorder the index.
-export const CATEGORY_ORDER = [
-  "Systems",
-  "Engineering",
-  "Machine Learning",
-  "Notes",
+// The fixed category set. Frontmatter carries the slug; the index renders the
+// label. Order here is the order sections appear on the blog index, and it is
+// declared rather than derived so publishing a post never reorders the page.
+//
+// Adding a category means adding it here — `scripts/blog/posts.mjs` fails the
+// build on any category not in this list, so a typo cannot reach production.
+export const CATEGORIES = [
+  { slug: "deep-dive", label: "Deep Dive" },
+  { slug: "build-log", label: "Build Log" },
+  { slug: "research", label: "Research" },
+  { slug: "notes", label: "Notes" },
 ];
 
-// Where a post lands when it declares no category of its own.
-export const UNCATEGORISED = "Notes";
+export const CATEGORY_SLUGS = CATEGORIES.map((category) => category.slug);
+
+export const categoryLabel = (slug) =>
+  CATEGORIES.find((category) => category.slug === slug)?.label ?? slug;
