@@ -29,9 +29,11 @@ const HeroEventStream = () => {
       // Decorative: the same information is on the blog index and on GitHub.
       aria-hidden="true"
       style={{
-        // Reads as a stream still running rather than a list that ended.
-        maskImage: "linear-gradient(to bottom, black 50%, transparent 100%)",
-        WebkitMaskImage: "linear-gradient(to bottom, black 50%, transparent 100%)",
+        // Reads as a stream still running rather than a list that ended. The
+        // hold is deep — the fade is the last few rows, not most of the panel,
+        // which at 50% left only the top handful legible.
+        maskImage: "linear-gradient(to bottom, black 70%, transparent 100%)",
+        WebkitMaskImage: "linear-gradient(to bottom, black 70%, transparent 100%)",
       }}
     >
       {/* The panel's box already starts level with the eyebrow, but the rows'
