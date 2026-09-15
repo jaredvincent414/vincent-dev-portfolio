@@ -112,20 +112,6 @@ section {
   60%       { transform: translateY(10px); opacity: 0.2; }
 }
 
-/* Typewriter cursor blink */
-.hero-cursor {
-  display: inline-block;
-  margin-left: 1px;
-  color: #edbb00;
-  font-weight: 300;
-  animation: cursor-blink 1s step-start infinite;
-}
-
-@keyframes cursor-blink {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0; }
-}
-
 /* Rendered markdown body for blog posts */
 .post-body {
   color: rgba(255, 255, 255, 0.72);
